@@ -54,8 +54,8 @@ ROOT_URLCONF = 'beats.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / 'static' / 'templates'],
+        'APP_DIRS': True,  # Allow searching for templates in each app
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -66,6 +66,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'beats.wsgi.application'
 
