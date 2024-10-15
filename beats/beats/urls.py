@@ -22,7 +22,6 @@ from beats import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-
-    
-]
+    path('', views.index, name='index'),          # Root URL
+    path('home/', views.home, name='home'),       # Distinct path for home
+    path('about/', views.about, name='about')]
