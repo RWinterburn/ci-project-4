@@ -34,17 +34,21 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
 
                 <li><a href="{% url 'about' %}">About</a></li>
+
+                <li><a href="{% url 'beats' %}">Beats</a></li>
+                
                 <li><a href="#">Contact</a></li>
             </ul>
             {% include 'includes/main-nav.html' %}
         </nav>
+        
         
     </header>
 
     <!-- Main Content Block -->
     <main>
         {% block content %}
-        <!-- Content will go here -->
+        
         {% endblock %}
     </main>
 

@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),          # Root URL
     path('home/', views.home, name='home'),       # Distinct path for home
-    path('about/', views.about, name='about')]
+    path('about/', views.about, name='about'),
+    path('beatlist/', views.beats, name='beats')]

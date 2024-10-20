@@ -9,3 +9,6 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def beats(request):
+    return render(request, 'beatlist.html')
