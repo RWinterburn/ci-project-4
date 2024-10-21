@@ -27,9 +27,8 @@ urlpatterns = [
     path('', views.index, name='index'),           # Root URL
     path('home/', views.home, name='home'),       # Distinct path for home
     path('about/', views.about, name='about'),
-    path('beats/', views.beatlist, name='beatlist'),  # Correct view name
     path('accounts/', include('allauth.urls')),   # Include allauth URLs
-    path('instrumentals/', include('instrumentals.urls')),    # Include beats app URLs
+     path('instrumentals/', include('instrumentals.urls')),    # Include beats app URLs
 ]
 
 # Serve media files during development

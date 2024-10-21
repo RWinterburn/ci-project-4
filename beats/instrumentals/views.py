@@ -1,8 +1,7 @@
-# instrumentals/views.py
 from django.shortcuts import render
-from .models import Beat  # Import the correct model
+from .models import Beat  # Import your Beat model
 
-def beatlist(request):
-    Beats = Beat.objects.all()  # Fetch all Beat instances
-    return render(request, 'instrumentals/beatlist.html', {'beat': beat})  # Ensure correct path
+def beat_list(request):
+    beats = Beat.objects.all()  # Fetch all Beat instances
+    return render(request, 'instrumentals/beatlist.html', {'beats': beats})
 
