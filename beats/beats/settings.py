@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['8000-rwinterburn-ciproject4-5lyra55o748.ws-eu116.gitpod.io',]
 
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-rwinterburn-ciproject4-5lyra55o748.ws-eu116.gitpod.io']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'beats.urls'
@@ -128,3 +135,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Could be "none", "optional", or "mandatory"
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"  # Could be "username", "email", or "username_email"
+
+SITE_ID = 1

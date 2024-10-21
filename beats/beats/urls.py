@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static  # Import the static function
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from beats import views
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     path('', views.index, name='index'),          # Root URL
     path('home/', views.home, name='home'),       # Distinct path for home
     path('about/', views.about, name='about'),
-    path('beatlist/', views.beats, name='beats')]
+    path('beatlist/', views.beats, name='beats'),
+    path('accounts/', include('allauth.urls')),]
