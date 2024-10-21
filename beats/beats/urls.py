@@ -15,15 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls.static import static  # Import the static function
+from django.conf.urls.static import static
 from django.contrib import admin
+from instrumentals.models import Beat  # Correct
+
 from django.urls import path, include
-from beats import views
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),          # Root URL
+    path('', views.index, name='index'),           # Root URL
     path('home/', views.home, name='home'),       # Distinct path for home
     path('about/', views.about, name='about'),
-    path('beatlist/', views.beats, name='beats'),
-    path('accounts/', include('allauth.urls')),]
+    path('beats/', views.beatlist, name='beatlist'),  # Correct view name
+    path('accounts/', include('allauth.urls')),   # Include allauth URLs
+    path('instrumentals/', include('instrumentals.urls')),    # Include beats app URLs
+]
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
