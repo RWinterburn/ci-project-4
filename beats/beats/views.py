@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from instrumentals.models import Beat  # Adjust this import based on your project structure
 
-
+from profiles.models import Profile
 
 def index(request):
     return render(request, 'base.html')  # This will render 'home.html', which can extend 'base.html'
@@ -12,6 +12,10 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+# views.py
+
+
 
 
 
