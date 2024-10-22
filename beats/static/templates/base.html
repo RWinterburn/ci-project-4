@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,63 +7,77 @@
     <title>{% block title %}My Website{% endblock %}</title>
 
     <!-- Static files (CSS/JS) -->
-    
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- jQuery and Bootstrap JS (necessary for dropdowns) -->
+    <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
-
-
     <!-- Extra head content (optional) -->
-    {% block extra_head %}
-    {% endblock %}
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <!-- Header Section -->
+
+    <!-- Header Section with Navbar -->
     <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!-- Brand -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <h1>Twin II Beats add logo</h1>
+                </a>
 
-        <nav class="nav-bar">
-            <ul>
-                <li> <h1>Twin II Beats</h1></li>
+                <!-- Toggler/collapsable Button (for mobile views) -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                
-                        <!-- search.html -->
-<form method="GET" action="{% url 'search' %}">
-    <input type="text" name="q" placeholder="Search for beats..." value="{{ query }}">
-    <button type="submit">Search</button>
-</form>
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'beats' %}">Beats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
 
-{% if results %}
-    <ul>
-        {% for beat in results %}
-            <li>{{ beat.title }} by {{ beat.producer }} - ${{ beat.price }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No results found.</p>
-{% endif %}
-
-                <li><a href="{% url 'home' %}">Home</a></li>
-
-                <li><a href="{% url 'about' %}">About</a></li>
-
-                <li><a href="{% url 'beats' %}">Beats</a></li>
-                
-                <li><a href="#">Contact</a></li>
-            </ul>
-            {% include 'includes/main-nav.html' %}
-        </nav>
+                    <!-- Search Form -->
+                    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
+                        <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search for beats..." aria-label="Search" value="{{ query }}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
         
-        
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_signup' %}">Signup</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</nav>
     </header>
-
     <!-- Main Content Block -->
     <main>
         {% block content %}
