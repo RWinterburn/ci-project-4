@@ -15,7 +15,10 @@ def about(request):
 
 
 
-
+def search(request):
+    query = request.GET.get('q')
+    results = Beat.objects.filter(title__icontains=query) if query else Beat.objects.all()
+    return render(request, 'search.html', {'results': results, 'query': query})
 
 
 def beatlist(request):

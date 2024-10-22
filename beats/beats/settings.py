@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qbvu(n2$xjb1o(9nbfe_!ay%x#z^)51vzmm_55pjd$+itrr-p)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-rwinterburn-ciproject4-5lyra55o748.ws-eu116.gitpod.io',]
+ALLOWED_HOSTS = ['8000-rwinterburn-ciproject4-5lyra55o748.ws-eu116.gitpod.io', '8000-rwinterburn-ciproject4-j341iks4fk8.ws-eu116.gitpod.io']
 
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-rwinterburn-ciproject4-5lyra55o748.ws-eu116.gitpod.io']

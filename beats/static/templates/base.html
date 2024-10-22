@@ -29,8 +29,28 @@
 <body>
     <!-- Header Section -->
     <header>
+
         <nav class="nav-bar">
             <ul>
+                <li> <h1>Twin II Beats</h1></li>
+
+                
+                        <!-- search.html -->
+<form method="GET" action="{% url 'search' %}">
+    <input type="text" name="q" placeholder="Search for beats..." value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+{% if results %}
+    <ul>
+        {% for beat in results %}
+            <li>{{ beat.title }} by {{ beat.producer }} - ${{ beat.price }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+
                 <li><a href="{% url 'home' %}">Home</a></li>
 
                 <li><a href="{% url 'about' %}">About</a></li>
