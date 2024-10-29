@@ -28,7 +28,8 @@ def search(request):
     beats = Beat.objects.filter(
         Q(title__icontains=query) |
         Q(producer__icontains=query) |
-        Q(description__icontains=query)
+        Q(description__icontains=query) |
+        Q(price__icontains=query)
     ) if query else Beat.objects.all()  # Filter beats by multiple fields
     return render(request, 'search.html', {'beats': beats, 'query': query})
 
