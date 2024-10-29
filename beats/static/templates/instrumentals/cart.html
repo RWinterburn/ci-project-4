@@ -1,0 +1,23 @@
+<!-- beats/templates/beats/cart.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Your Cart</h1>
+
+<ul>
+    {% for item in cart_items %}
+    <li>
+        <img src="{{ item.beat.cover_image.url }}" alt="{{ item.beat.title }}" width="100">
+        <h3>{{ item.beat.title }}</h3>
+        <p>By: {{ item.beat.producer }}</p>
+        <p>Price: ${{ item.beat.price }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Total: ${{ item.beat.price * item.quantity }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Total Price: ${{ total }}</h2>
+
+<a href="{% url 'checkout' %}">Proceed to Checkout</a>
+{% endblock %}
