@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from instrumentals.models import Beat  # Adjust this import based on your project structure
+from instrumentals.models import Beat
+from django.db.models import Q  # Adjust this import based on your project structure
 
 from profiles.models import Profile
 
@@ -19,10 +20,17 @@ def about(request):
 
 
 
+# beats/views.py
+
+
 def search(request):
-    query = request.GET.get('q')
-    results = Beat.objects.filter(title__icontains=query) if query else Beat.objects.all()
-    return render(request, 'search.html', {'results': results, 'query': query})
+    query = request.GET.get('q', '')  # Get the search query from the URL
+    beats = Beat.objects.filter(
+        Q(title__icontains=query) |
+        Q(producer__icontains=query) |
+        Q(description__icontains=query)
+    ) if query else Beat.objects.all()  # Filter beats by multiple fields
+    return render(request, 'search.html', {'beats': beats, 'query': query})
 
 
 def beatlist(request):

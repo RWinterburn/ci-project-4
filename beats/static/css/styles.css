@@ -1,0 +1,9 @@
+.audio-div {background-color: rgb(240, 240, 240);
+width: fit-content;
+align-items: center;}
+
+.cover{align-items: center;
+width: 300px;
+height: auto;}
+
+ul {list-style-type: none;}

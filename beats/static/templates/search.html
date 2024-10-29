@@ -1,0 +1,27 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<ul>
+    {% for beat in beats %}
+    <li>
+        <div class="audio-div">
+            <img src="{{ beat.cover_image.url }}" alt="{{ beat.title }}" width="100" class="cover">
+            <h3>{{ beat.title }}</h3>
+            <p>By: {{ beat.producer }}</p>
+            <p>Price: ${{ beat.price }}</p>
+            <audio controls>
+                <source src="{{ beat.audio_file.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button>Buy Now</button>
+        </div>
+    </li>
+    {% empty %}
+    <li>No beats available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
