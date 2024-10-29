@@ -17,7 +17,11 @@ def about(request):
 # views.py
 
 
-
+def cart_view(request):
+    cart_items = CartItem.objects.filter(user=request.user)
+    for item in cart_items:
+        item.total_price = item.beat.price * item.quantity
+    return render(request, 'instrumentals/cart.html', {'cart_items': cart_items})
 
 
 # beats/views.py
