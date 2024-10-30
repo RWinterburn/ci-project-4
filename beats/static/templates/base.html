@@ -38,12 +38,7 @@
                     </ul>
                     
                     <!-- Cart Icon with Item Count -->
-                    <a href="{% url 'view_cart' %}" class="nav-link position-relative">
-                        <i class="fa fa-shopping-cart"></i> Cart
-                        {% if cart_item_count > 0 %}
-                            <span class="badge badge-danger position-absolute" style="top: -5px; right: -10px;">{{ cart_item_count }}</span>
-                        {% endif %}
-                    </a>
+                    {% include "includes/cart_dropdown.html" %}
                     
                     <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
                         <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search for beats..." aria-label="Search" value="{{ query }}">
