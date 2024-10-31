@@ -17,7 +17,8 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from instrumentals.models import Beat  # Correct
+from instrumentals.models import Beat
+from bag.models import CartItem  # Correct
 
 from django.urls import path, include
 from . import views
@@ -30,7 +31,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),   # Include allauth URLs
      path('instrumentals/', include('instrumentals.urls')),
      path('search/', views.search, name='search'), 
-     path('profiles/', include('profiles.urls')),   # Include beats app URLs
+     path('profiles/', include('profiles.urls')), 
+     path('bag/', include('bag.urls')),  # Include beats app URLs
 ]
 
 # Serve media files during development

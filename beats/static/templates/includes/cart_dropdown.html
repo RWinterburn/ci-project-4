@@ -16,6 +16,7 @@
             <div class="dropdown-item">
                 <p>Total Quantity: {{ total_quantity }}</p>
                 <p>Total Price: ${{ total_price }}</p>
+                <a href="{% url 'view_cart' %}">Proceed to Checkout</a>
             </div>
         {% else %}
             <div class="dropdown-item">
