@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'instrumentals',
     'profiles',
     'bag',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'beats.urls'
