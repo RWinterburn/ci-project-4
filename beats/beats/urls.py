@@ -32,7 +32,8 @@ urlpatterns = [
      path('instrumentals/', include('instrumentals.urls')),
      path('search/', views.search, name='search'), 
      path('profiles/', include('profiles.urls')), 
-     path('bag/', include('bag.urls')),  # Include beats app URLs
+     path('bag/', include('bag.urls')),
+     path('checkout/', include('checkout.urls')),  # Include beats app URLs
 ]
 
 # Serve media files during development

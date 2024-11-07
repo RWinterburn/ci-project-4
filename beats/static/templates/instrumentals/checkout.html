@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        /* Customize email styling */
-    </style>
-</head>
-<body>
+{% extends 'base.html' %}
+
+
+{% block content %}
+
     <h2>Thank you for your purchase, {{ user.username }}!</h2>
     <p>Your order ID: {{ order.id }}</p>
     <p>Here are the download links for your purchased beats:</p>
@@ -18,5 +15,6 @@
         {% endfor %}
     </ul>
     <p>We hope you enjoy your beats!</p>
-</body>
-</html>
+
+
+    
