@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from instrumentals.models import Beat
+from profiles.models import Profile
 from bag.models import CartItem  # Correct
 
 from django.urls import path, include

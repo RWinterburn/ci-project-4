@@ -1,34 +1,26 @@
-from django.conf import settings
+# checkout/models.py
 from django.db import models
-from instrumentals.models import Beat
-from profiles.models import Profile
-from django.shortcuts import render
 
-def checkout_view(request):
-    user_profile = None
-    if request.user.is_authenticated:
-        user_profile = Profile.objects.get(user=request.user)
-    
-    # Pass user_profile to the template or use it directly in the view
-    context = {
-        'profile': user_profile,
-        # other checkout data
-    }
-    return render(request, 'checkout/checkout.html', context)
-  # Assuming 'instrumentals' is your beats app
+ # Make sure this is at the top
 
 class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    order_number = models.CharField(max_length=32, null=False, editable=False)
+    full_name = models.CharField(max_length=50, null=False, blank= False)
+    email = models.EmailField(max_length=254, null=False, blank=False)
+    phone_number = models.CharField(max_length=20, null=False, blank=False)
+    country = models.CharField(max_length=40, null=False, blank=False)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    town_or_city = models.CharField(max_length=20, null=False, blank=False)
+    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
 
-    def __str__(self):
-        return f"Order {self.id} by {self.user.username}"
 
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    beat = models.ForeignKey(Beat, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
 
-    def __str__(self):
-        return f"{self.quantity} x {self.beat.title} (Order {self.order.id})"
+class OrderLineItem(models.Model):
+    order = models.ForeignKey(Order, null= False, blank= False, on_delete=models.CASCADE, related_name='lineitems')
+    product = models.ForeignKey()
+    quantity
+    lineitem_total
