@@ -1,28 +1,21 @@
-from django.shortcuts import render, redirect
-from .models import Order
-from instrumentals.models import Beat
-from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.conf import settings
-from django.db import transaction
+from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
-# Make sure the view_cart is properly imported if needed
-from bag.views import view_cart
+from .forms import OrderForm
 
-from profiles.models import Profile
 
 
 def checkout(request):
-    user_profile = None
-    if request.user.is_authenticated:
-        user_profile = Profile.objects.get(user=request.user)
-    
-    # Pass user_profile to the template or use it directly in the view
-    context = {
-        'profile': user_profile,
-        # other checkout data
+    bag = request.session.get('bag',{})
+    if not bag:
+        messages.error(request,'There is nothing in your bag')
+        return redirect(reverse('instrumentals'))
+
+    order_form = Orderform()
+    template = 'checkout/checkout.html'
+    context = { 
+        'order_form': order_form,
     }
-    return render(request, 'checkout.html', context)
-  # Assuming 'instrumentals' is your beats app
+
+    return render(request,template, context)
 

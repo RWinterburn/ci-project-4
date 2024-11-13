@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'profiles',
     'bag',
     'checkout',
+    'crispy_forms',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,6 +77,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bag.context_processors.cart_items'
             ],
+            'builtins':['crispy_forms.templatetags.crispy_form_tags',
+            'crispy_forms.templatetags.crispy_forms_field',]
         },
     },
 ]
