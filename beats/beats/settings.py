@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'checkout',
     'crispy_forms',
 ]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,21 +67,20 @@ ROOT_URLCONF = 'beats.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'static' /'templates' ],
-        'APP_DIRS': True,  # Allow searching for templates in each app
+        'DIRS': [BASE_DIR / 'static' / 'templates'],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'bag.context_processors.cart_items'
+                'bag.context_processors.cart_items',  # Your custom context processor
             ],
-            'builtins':['crispy_forms.templatetags.crispy_form_tags',
-            'crispy_forms.templatetags.crispy_forms_field',]
         },
     },
 ]
+
 
 
 WSGI_APPLICATION = 'beats.wsgi.application'
