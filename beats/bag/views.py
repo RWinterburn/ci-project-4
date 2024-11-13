@@ -27,22 +27,19 @@ def add_to_cart(request, beat_id):
 
 @login_required
 def view_cart(request):
-    # Retrieve cart from the session
+    # Retrieve the shopping bag from the session
     bag = request.session.get('bag', {})
     cart_items = []
+
+    # Initialize total price
     total = 0
 
-    # Process items from the session
+    # Create a list of items based on the session data
     for beat_id, quantity in bag.items():
         beat = get_object_or_404(Beat, id=beat_id)
-        total_price = beat.price * quantity
+        total_price = beat.price * quantity  # Calculate total price for each item
         cart_items.append({'beat': beat, 'quantity': quantity, 'total_price': total_price})
-        total += total_price
+        total += total_price  # Add the total price of the item to the grand total
 
-    # Optionally, fetch cart items from the database if needed
-    db_cart_items = CartItem.objects.filter(user=request.user)
-    # Add db_cart_items if you want to merge the session and db data
-
-    return render(request, 'instrumentals/cart.html', {'cart_items': cart_items, 'total': total})
-
+    return render(request, 'instrumentals/cart.html', {'cart_items': cart_items, 'total_price': total})
 
