@@ -1,13 +1,13 @@
 <div class="nav-item dropdown position-relative">
     <a href="{% url 'view_cart' %}" class="nav-link dropdown-toggle" id="cartDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-shopping-cart"></i> Cart {% for item in cart_items %}
+        <i class="fa fa-shopping-cart"></i> Cart
         <p>{{ total_quantity }}</p>
         <p>${{ total_price }}</p>
-        {% endfor %}
         {% if cart_item_count > 0 %}
             <span class="badge badge-danger position-absolute" style="top: -5px; right: -10px;">{{ cart_item_count }}</span>
         {% endif %}
     </a>
+
     <div class="dropdown-menu" aria-labelledby="cartDropdown">
         {% if cart_items %}
             {% for item in cart_items %}
