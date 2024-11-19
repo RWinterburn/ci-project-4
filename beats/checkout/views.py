@@ -31,7 +31,9 @@ def checkout(request):
     template = 'checkout/checkout.html'
     context = { 
         'order_form': order_form,
-        'grand_total': grand_total,  # Pass the grand_total to the template
+        'grand_total': grand_total,
+        'stripe_public_key': 'pk_test_51QMs27DNIGFfmTD0aPcOZsVCdJx6Kj1KULYcavy6fNtNPR1qGTyj9HfMxsvI8XbAA8BeNwSRAwL4D12C9u52QglN00a7ewNLwy',
+        'client_secret_key': 'sk_test_51QMs27DNIGFfmTD0v0vo69HOYrfNrITILmrjDxgz5lRC7engEAU5bUx66QUJEKnzUrkzSuWFqGHZLPe4sAlnPG2x00maBEatWw',  # Pass the grand_total to the template
     }
 
     # Render the checkout template

@@ -151,3 +151,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Could be "none", "optional", or "man
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"  # Could be "username", "email", or "username_email"
 
 SITE_ID = 1
+
+
+stripe_public_key = 
+STRIPE_SECRET_KEY = 

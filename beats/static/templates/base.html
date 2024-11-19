@@ -57,8 +57,13 @@
     <footer>
         <p>Twin II Beats. All rights reserved.</p>
     </footer>
+    {% block extra_scripts %}
+
+    <!---stripe-->
+    <script src="https://js.stripe.com/v3/"></script>
+
 
     <script src="{% static 'js/main.js' %}"></script>
-    {% block extra_scripts %}{% endblock %}
+    {% endblock %}
 </body>
 </html>
