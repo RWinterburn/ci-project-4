@@ -52,3 +52,7 @@ def checkout(request):
     # Render the checkout template
     return render(request, template, context)
 
+
+
+def payment_success(request):
+    return render(request, 'checkout/payment_success.html')
