@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
 from .forms import OrderForm
+from django.conf import settings
 
 from instrumentals.models import Beat
 
@@ -30,10 +31,10 @@ def checkout(request):
     # Define the template path and context
     template = 'checkout/checkout.html'
     context = { 
-        'order_form': order_form,
-        'grand_total': grand_total,
-        'stripe_public_key': 'pk_test_51QMs27DNIGFfmTD0aPcOZsVCdJx6Kj1KULYcavy6fNtNPR1qGTyj9HfMxsvI8XbAA8BeNwSRAwL4D12C9u52QglN00a7ewNLwy',
-        'client_secret_key': 'sk_test_51QMs27DNIGFfmTD0v0vo69HOYrfNrITILmrjDxgz5lRC7engEAU5bUx66QUJEKnzUrkzSuWFqGHZLPe4sAlnPG2x00maBEatWw',  # Pass the grand_total to the template
+    'order_form': order_form,
+    'grand_total': grand_total,
+    'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+    'client_secret_key': settings.STRIPE_SECRET_KEY,
     }
 
     # Render the checkout template
