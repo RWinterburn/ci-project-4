@@ -9,4 +9,3 @@ var stripe = Stripe(stripe_public_key);
 var elements = stripe.elements();
 var card = elements.create('card');
 card.mount('#card-element');
-
