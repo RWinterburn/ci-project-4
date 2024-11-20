@@ -63,7 +63,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         var stripe_public_key = "{{ stripe_public_key }}";
-        var client_secret = "{{ client_secret_key }}";
+        var client_secret = "{{ client_secret }}";
     
         // Initialize Stripe
         var stripe = Stripe(stripe_public_key);
@@ -78,7 +78,7 @@
             // Disable the submit button to prevent multiple submissions
             document.getElementById('submit-button').disabled = true;
 
-            stripe.confirmCardPayment(clientSecret, {
+            stripe.confirmCardPayment(client_secret, {
                 payment_method: {
                     card: card,
                     billing_details: {
