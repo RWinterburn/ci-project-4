@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.conf import settings
 from django.contrib import messages
 from .forms import OrderForm  # Ensure this form is defined correctly
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
 from .forms import OrderForm
-from django.conf import settings
+
 
 from instrumentals.models import Beat
 

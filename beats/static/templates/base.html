@@ -61,6 +61,17 @@
 
     <!---stripe-->
     <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe_public_key = "{{ stripe_public_key }}";
+        var client_secret = "{{ client_secret_key }}";
+    
+        // Initialize Stripe
+        var stripe = Stripe(stripe_public_key);
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+    </script>
+    
 
 
     <script src="{% static 'js/main.js' %}"></script>
