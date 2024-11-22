@@ -6,6 +6,21 @@
 <div class="container">
     <h1>Payment Successful!</h1>
     <p>Your payment has been successfully processed.</p>
+
+    <h3>Purchased Items:</h3>
+    <ul>
+        {% for item in purchased_items %}
+            <li>
+                <p>Title: {{ item.beat.title }}</p>
+                <p>Price: ${{ item.beat.price }}</p>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Total for this item: ${{ item.total_price }}</p>
+            </li>
+        {% empty %}
+            <p>No items were purchased.</p>
+        {% endfor %}
+    </ul>
+
     <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
 </div>
 {% endblock %}

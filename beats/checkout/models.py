@@ -3,7 +3,6 @@ from django.db import models
 import uuid
 from django.db.models import Sum
 from django.conf import settings
-
 from instrumentals.models import Beat
 from profiles.models import Profile
 
@@ -48,10 +47,10 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null= False, blank= False, on_delete=models.CASCADE, related_name='lineitems')
-    product = models.ForeignKey(Beat, null=False,blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False,blank=False,default=0)
-    lineitem_total = models.DecimalField(max_digits=6,decimal_places=2,null=False,blank=False,editable=False)
+    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
+    product = models.ForeignKey(Beat, null=False, blank=False, on_delete=models.CASCADE)
+    quantity = models.IntegerField(null=False, blank=False, default=0)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         # Calculate the total price for this line item
@@ -59,4 +58,6 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"SKU{self.product.sku} on order {self.order.order_number}"
+        # Check if the product has a SKU and use it in the string representation
+        sku = getattr(self.product, 'sku', 'No SKU')  # Default to 'No SKU' if sku is not present
+        return f"SKU{sku} on order {self.order.order_number}"
