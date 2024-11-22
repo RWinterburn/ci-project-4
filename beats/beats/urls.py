@@ -20,6 +20,7 @@ from django.contrib import admin
 from instrumentals.models import Beat
 from profiles.models import Profile
 from bag.models import CartItem  # Correct
+from checkout.views import payment_success
 
 from django.urls import path, include
 from . import views
@@ -35,6 +36,8 @@ urlpatterns = [
      path('profiles/', include('profiles.urls')), 
      path('bag/', include('bag.urls')),
      path('checkout/', include('checkout.urls')),
+     path('payment_success/', payment_success, name='payment_success'),
+     
   # Include beats app URLs
 ]
 

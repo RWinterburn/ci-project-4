@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import OrderForm
 from .models import Beat
+from bag.models import CartItem
 
 # Set your secret key for Stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -53,6 +54,18 @@ def checkout(request):
     return render(request, template, context)
 
 
-
+    
 def payment_success(request):
-    return render(request, 'checkout/payment_success.html')
+    # Clear session-based shopping bag
+    if 'bag' in request.session:
+        del request.session['bag']
+
+    # Clear database-based cart for the authenticated user
+    if request.user.is_authenticated:
+        CartItem.objects.filter(user=request.user).delete()
+
+    # Render the success page
+    return render(request, 'payment_success.html', {'message': 'Your payment was successful, and your bag has been cleared!'})
+
+
+

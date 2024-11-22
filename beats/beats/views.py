@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from instrumentals.models import Beat
-from django.db.models import Q  # Adjust this import based on your project structure
+from django.db.models import Q 
+from bag.models import CartItem
+ # Adjust this import based on your project structure
 
 from profiles.models import Profile
 
@@ -45,5 +47,5 @@ def beatlist(request):
 
 from django.shortcuts import render
 
-def payment_success(request):
-    return render(request, 'checkout/payment_success.html')
+  # Import CartItem if you use a database-based cart
+
