@@ -67,7 +67,7 @@ ROOT_URLCONF = 'beats.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'static' / 'templates'],
+        'DIRS': [BASE_DIR / 'static/templates'],  # Ensure this points to the correct directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -157,3 +157,5 @@ SITE_ID = 1
 
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+
+STRIPE_WEBHOOK_SECRET = 'your-webhook-secret-here'
