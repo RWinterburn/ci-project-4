@@ -2,12 +2,14 @@ from django.shortcuts import render
 from instrumentals.models import Beat
 from django.db.models import Q 
 from bag.models import CartItem
+from checkout.views import payment_success
  # Adjust this import based on your project structure
 
 from profiles.models import Profile
 
 def index(request):
     return render(request, 'base.html')  # This will render 'home.html', which can extend 'base.html'
+
 
 
 def home(request):
@@ -48,4 +50,5 @@ def beatlist(request):
 from django.shortcuts import render
 
   # Import CartItem if you use a database-based cart
+
 

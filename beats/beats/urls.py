@@ -1,12 +1,13 @@
+
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from instrumentals.models import Beat
 from profiles.models import Profile
 from bag.models import CartItem
-from checkout.views import payment_success
 
-from django.urls import path, include
+
 from . import views
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')), 
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
+    path('payment_success/<order_number>/', views.payment_success, name='payment_success')
       # This includes payment_success
 ]
 

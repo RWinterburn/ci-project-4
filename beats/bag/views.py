@@ -43,3 +43,4 @@ def view_cart(request):
 
     return render(request, 'instrumentals/cart.html', {'cart_items': cart_items, 'total_price': total})
 
+

@@ -64,20 +64,25 @@
     <script>
         var stripe_public_key = "{{ stripe_public_key }}";
         var client_secret = "{{ client_secret }}";
+        var order_number = "{{ order_number }}";
     
         // Initialize Stripe
         var stripe = Stripe(stripe_public_key);
         var elements = stripe.elements();
         var card = elements.create('card');
         card.mount('#card-element');
-
+    
         var form = document.getElementById('payment-form');
+        var submitButton = document.getElementById('submit-button');
+        var cardErrors = document.getElementById('card-errors');
+    
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-
-            // Disable the submit button to prevent multiple submissions
-            document.getElementById('submit-button').disabled = true;
-
+    
+            // Disable the submit button and show loading indicator
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+    
             stripe.confirmCardPayment(client_secret, {
                 payment_method: {
                     card: card,
@@ -97,19 +102,25 @@
             }).then(function(result) {
                 if (result.error) {
                     // Show error to the customer
-                    document.getElementById('card-errors').textContent = result.error.message;
+                    cardErrors.textContent = result.error.message;
                     // Re-enable the submit button
-                    document.getElementById('submit-button').disabled = false;
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Payment';
                 } else {
                     if (result.paymentIntent.status === 'succeeded') {
-                        // Payment succeeded, redirect to success page or show confirmation
-                        window.location.href = '/payment_success/';
-
+                        // Payment succeeded, redirect to the success page
+                        window.location.href = '/payment_success/' + order_number + '/';
                     }
                 }
+            }).catch(function(error) {
+                // Handle unexpected errors
+                cardErrors.textContent = 'An error occurred. Please try again.';
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Payment';
             });
         });
     </script>
+    
 
     
 

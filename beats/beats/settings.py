@@ -67,7 +67,8 @@ ROOT_URLCONF = 'beats.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'static/templates'],  # Ensure this points to the correct directory
+        'DIRS': [BASE_DIR /'templates'],
+  # Ensure this points to the correct directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
