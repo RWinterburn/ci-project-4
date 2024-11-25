@@ -92,7 +92,6 @@ def stripe_webhook(request):
 def payment_success(request, order_number):
     # Fetch the order using the provided order_number
     order = get_object_or_404(Order, order_number=order_number)
-    success_url = request.build_absolute_uri(f'/payment-success/?order_number={order.order_number}')
 
     # Optionally handle saving user information (if needed)
     save_info = request.session.get('save_info')
@@ -100,11 +99,18 @@ def payment_success(request, order_number):
     # Show success message to the user
     messages.success(request, f"Order successfully processed! Your order number is {order_number}.")
 
+    # Fetch the purchased items (order line items) for the order
+    purchased_items = OrderLineItem.objects.filter(order=order)
+
     # Clear the session-based shopping bag if it exists
     if 'bag' in request.session:
         del request.session['bag']
 
-    # Render the success page with the order context
-    return render(request, 'checkout/payment_success.html', {'order': order})
+    # Render the success page with the purchased items and order context
+    return render(request, 'checkout/payment_success.html', {
+        'order': order,
+        'purchased_items': purchased_items,
+    })
+
     
     

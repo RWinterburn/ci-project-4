@@ -3,7 +3,7 @@
 
 {% block title %}Payment Success{% endblock %}
 
-{% block content %}
+    {% block content %}
 <div class="container">
     <h1>Payment Successful!</h1>
     <p>Your payment has been successfully processed.</p>
@@ -15,7 +15,7 @@
                 <p>Title: {{ item.beat.title }}</p>
                 <p>Price: ${{ item.beat.price }}</p>
                 <p>Quantity: {{ item.quantity }}</p>
-                <p>Total for this item: ${{ item.total_price }}</p>
+                <p>Total for this item: ${{ item.lineitem_total }}</p>
             </li>
         {% empty %}
             <p>No items were purchased.</p>
