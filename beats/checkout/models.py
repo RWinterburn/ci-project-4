@@ -46,3 +46,7 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.beat.title} on Order {self.order.order_number}"
+
+
+
+
