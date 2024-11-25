@@ -21,7 +21,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')), 
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
-    path('payment_success/<order_number>/', views.payment_success, name='payment_success')
+    
       # This includes payment_success
 ]
 

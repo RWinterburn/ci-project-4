@@ -1,12 +1,14 @@
 from django.urls import path
-from . import views  # Assuming 'views' contains 'checkout' and other views
-from bag.views import view_cart
+  # Assuming 'views' contains 'checkout' and other views
+from . import views
  # Importing 'view_cart' from the 'bag' app
 
 urlpatterns = [
-    path('', views.checkout, name='checkout'),
-    path('payment_success/<order_number>/', views.payment_success, name='payment_success'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('payment_success/<str:order_number>/', views.payment_success, name='payment_success'),
+    path('webhook/', views.stripe_webhook, name='stripe_webhook'),
 ]
+
 
 
 
