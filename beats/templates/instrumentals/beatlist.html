@@ -1,13 +1,12 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 <h1>Available Beats</h1>
-<ul>
-    <!-- Example on search.html or beats list page -->
-{% for beat in beats %}
-<li>
-    <div class="audio-div">
-        <img src="{{ beat.cover_image.url }}" alt="{{ beat.title }}" width="100" class="cover">
+
+<div class="grid-container">
+    {% for beat in beats %}
+    <div class="grid-item">
+        <img src="{{ beat.cover_image.url }}" alt="{{ beat.title }}" class="cover">
         <h3>{{ beat.title }}</h3>
         <p>By: {{ beat.producer }}</p>
         <p>Price: ${{ beat.price }}</p>
@@ -17,8 +16,8 @@
         </audio>
         <a href="{% url 'add_to_cart' beat.id %}"><button>Add to Cart</button></a>
     </div>
-</li>
-{% endfor %}
+    {% endfor %}
 
-</ul>
+
+
 {% endblock %}

@@ -34,17 +34,27 @@ def checkout(request):
                 request.session.pop('bag', None)
                 print('works')
 
+                # Create a Stripe PaymentIntent
+                grand_total = sum(Beat.objects.get(id=item_id).price * quantity for item_id, quantity in bag.items())
+                try:
+                    intent = stripe.PaymentIntent.create(
+                        amount=int(grand_total * 100), 
+                        currency='usd',
+                        metadata={'order_id': order.id}  # Attach order_id to the metadata
+                    )
+                    client_secret = intent.client_secret
+                except stripe.error.StripeError as e:
+                    messages.error(request, f"Payment processing error: {e.user_message}")
+                    return redirect('view_cart')
 
-                
-
-                # Redirect to the success page
-                return redirect(reverse('payment_success',args=[order.order_number]))
+                # Redirect to the payment success page
+                return redirect(reverse('payment_success', args=[order.order_number]))
 
             except Exception as e:
                 print(e)
                 messages.error(request, f"Error processing your order: {e}")
                 return redirect('view_cart')
-        else: 
+        else:
             print(form.errors)
 
     # Handle GET requests
@@ -61,7 +71,6 @@ def checkout(request):
     except stripe.error.StripeError as e:
         messages.error(request, f"Payment processing error: {e.user_message}")
         return redirect('view_cart')
-        
 
     # Render the checkout page with context
     context = {
@@ -74,23 +83,42 @@ def checkout(request):
 
 
 
+
 def stripe_webhook(request):
-    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
     payload = request.body
-    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
-
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    
+    event = None
+    
     try:
-        event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
-    except (ValueError, stripe.error.SignatureVerificationError):
-        return HttpResponse(status=400)
+        # Verify the webhook signature
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return JsonResponse({"status": "error"}, status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        raise PermissionDenied("Invalid signature")
 
+    # Handle the event
     if event['type'] == 'payment_intent.succeeded':
-        payment_intent = event['data']['object']
-        order_id = payment_intent['metadata'].get('order_id')  # Retrieve order ID from metadata
-        order = get_object_or_404(Order, id=order_id)
-        order.status = 'Completed'
-        order.save()
-    return JsonResponse({'status': 'success'})
+        session = event['data']['object']  # Contains the session object
+        order_id = session['metadata']['order_id']  # Retrieve order_id from metadata
+
+        try:
+            # Fetch the order using order_id
+            order = Order.objects.get(id=order_id)
+            order.status = 'paid'  # Update the order status to 'paid'
+            order.save()
+
+            # Optionally send an email or perform other actions here
+
+        except Order.DoesNotExist:
+            return JsonResponse({"status": "error", "message": "Order not found"}, status=404)
+
+    return JsonResponse({"status": "success"}, status=200)
 
 
 

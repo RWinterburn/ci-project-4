@@ -62,7 +62,7 @@
                         </span>
                         <span class="font-weight-bold">Adjust Bag</span>
                     </a>
-                    <button id="submit-button" class="btn btn-black rounded-0">
+                    <button id="submit-button" class="btn btn-black rounded-0" onsubmit="showLoadingOverlay()">
                         <span class="font-weight-bold">Complete Order</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>
@@ -78,6 +78,14 @@
             </form>
         </div>
     </div>
+</div>
+
+<div id="loading-overlay">
+    <h1 class="text-light logo-font loading-spinner">
+        <span class="icon">
+            <i class ="fas fa-3x fa-sync-alt fa-spin"></i>
+        </span>
+    </h1>
 </div>
 
 
