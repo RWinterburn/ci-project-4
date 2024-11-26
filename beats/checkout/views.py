@@ -32,6 +32,23 @@ def checkout(request):
                 request.session.pop('bag', None)
                 print('works')
 
+
+                subject = 'Order Confirmation'
+                message = (
+                    f"Thank you for your order, {order.full_name}!\n\n"
+                    f"Your order number is {order.order_number}.\n"
+                    f"Order total: ${order.get_total()}\n\n"
+                    f"We hope you enjoy your beats!"
+                )
+                recipient_email = order.email
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [recipient_email],
+                    fail_silently=False,
+                )
+
                 # Redirect to the success page
                 return redirect(reverse('payment_success',args=[order.order_number]))
 
