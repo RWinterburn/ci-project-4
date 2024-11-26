@@ -7,6 +7,8 @@ from .forms import OrderForm
 from instrumentals.models import Beat
 from bag.models import CartItem
 from .models import Order, OrderLineItem
+from django.core.mail import send_mail
+
 
 # Set your secret key for Stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -33,21 +35,7 @@ def checkout(request):
                 print('works')
 
 
-                subject = 'Order Confirmation'
-                message = (
-                    f"Thank you for your order, {order.full_name}!\n\n"
-                    f"Your order number is {order.order_number}.\n"
-                    f"Order total: ${order.get_total()}\n\n"
-                    f"We hope you enjoy your beats!"
-                )
-                recipient_email = order.email
-                send_mail(
-                    subject,
-                    message,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [recipient_email],
-                    fail_silently=False,
-                )
+                
 
                 # Redirect to the success page
                 return redirect(reverse('payment_success',args=[order.order_number]))

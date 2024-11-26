@@ -3,7 +3,7 @@
 
 {% block title %}Payment Success{% endblock %}
 
-    {% block content %}
+{% block content %}
 <div class="container">
     <h1>Payment Successful!</h1>
     <p>Your payment has been successfully processed.</p>
@@ -16,6 +16,13 @@
                 <p>Price: ${{ item.beat.price }}</p>
                 <p>Quantity: {{ item.quantity }}</p>
                 <p>Total for this item: ${{ item.lineitem_total }}</p>
+                {% if item.beat.audio_file %}
+                    <p>
+                        <a href="{{ item.beat.audio_file.url }}" download>Download</a>
+                    </p>
+                {% else %}
+                    <p>Download not available for this item.</p>
+                {% endif %}
             </li>
         {% empty %}
             <p>No items were purchased.</p>
@@ -25,3 +32,4 @@
     <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
 </div>
 {% endblock %}
+
