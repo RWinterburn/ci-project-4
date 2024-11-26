@@ -1,21 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Payment Success{% endblock %}
+{% block title %}Order Details{% endblock %}
 
 {% block content %}
 <div class="container">
     <h1>Payment Successful!</h1>
-    <p>Your payment has been successfully processed.</p>
+    <p>Thank you for your order! Below are your order details:</p>
+
+    <h3>Order Details:</h3>
+    <ul>
+        <li><strong>Order Number:</strong> {{ order.order_number }}</li>
+        <li><strong>Order Date:</strong> {{ order.date }}</li>
+        <li><strong>Customer Name:</strong> {{ order.full_name }}</li>
+        <li><strong>Email:</strong> {{ order.email }}</li>
+        <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
+        <li><strong>Address:</strong> {{ order.street_address1 }},
+            {% if order.street_address2 %}{{ order.street_addre2 }}, {% endif %}
+            {{ order.city }}, {{ order.postcode }}, {{ order.country }}
+        </li>
+        <li><strong>Total Amount:</strong> ${{ order.grand_total }}</li>
+    </ul>
 
     <h3>Purchased Items:</h3>
     <ul>
         {% for item in purchased_items %}
             <li>
-                <p>Title: {{ item.beat.title }}</p>
-                <p>Price: ${{ item.beat.price }}</p>
-                <p>Quantity: {{ item.quantity }}</p>
-                <p>Total for this item: ${{ item.lineitem_total }}</p>
+                <p><strong>Title:</strong> {{ item.beat.title }}</p>
+                <p><strong>Price:</strong> ${{ item.beat.price }}</p>
+                <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                <p><strong>Total for this item:</strong> ${{ item.lineitem_total }}</p>
                 {% if item.beat.audio_file %}
                     <p>
                         <a href="{{ item.beat.audio_file.url }}" download>Download</a>
@@ -29,7 +43,8 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Return to Home</a>
 </div>
 {% endblock %}
+
 
