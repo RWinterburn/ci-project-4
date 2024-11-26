@@ -16,7 +16,7 @@
         <li><strong>Email:</strong> {{ order.email }}</li>
         <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
         <li><strong>Address:</strong> {{ order.street_address1 }},
-            {% if order.street_address2 %}{{ order.street_addre2 }}, {% endif %}
+            {% if order.street_address2 %}{{ order.street_address2 }}, {% endif %}
             {{ order.city }}, {{ order.postcode }}, {{ order.country }}
         </li>
         <li><strong>Total Amount:</strong> ${{ order.grand_total }}</li>
