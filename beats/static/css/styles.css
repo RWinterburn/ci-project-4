@@ -5,6 +5,44 @@ body {background-color: black;
     font-family: Arial, sans-serif; /* Optional: Set a clean font */
 }
 
+.custom-toggler {
+    border: 1px solid white; /* White border for the button */
+    background-color: black; /* Black background for the button */
+    padding: 5px; /* Adjust padding for better spacing */
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: none; /* Remove default toggler icon */
+    width: 30px; /* Set width of the icon */
+    height: 2px; /* Set height of the lines */
+    background-color: white; /* White color for the lines */
+    position: relative;
+}
+
+.custom-toggler .navbar-toggler-icon::before
+.custom-toggler .navbar-toggler-icon::after {
+
+    position: absolute;
+    width: 100%; /* Full width of the icon */
+    height: 2px; /* Same height as the main line */
+    background-color: white; /* White color for the additional lines */
+    left: 0;
+}
+
+.custom-search-btn {
+    color: white; /* White text */
+    background-color: black; /* Black background */
+    border: 2px solid white; /* White border */
+    transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.custom-search-btn:hover {
+    color: black; /* Black text on hover */
+    background-color: white; /* White background on hover */
+    border-color: black; /* Black border on hover */
+}
+
+
 
 .navbar {background-color: black;}
 .nav-link {color: white;}
@@ -139,8 +177,8 @@ ul {
     max-width: 500px;
     height: auto;
     border-radius: 10%; /* Circular image */
-    border: 3px solid #444444;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.5);
 }
 
 .about-text h3 {
@@ -156,36 +194,39 @@ ul {
     margin-bottom: 10px;
 }
 
+.faq {text-align: center;}
 /* FAQ Section Styles */
 .faq-section {
-    background-color: #333; /* Dark grey background */
-    color: white; /* White text */
+    background-color: #111111; /* Near black for a subtle contrast */
+    color: #ffffff; /* White text */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
     padding: 20px; /* Add some padding around the FAQ section */
     border-radius: 8px; /* Rounded corners for the FAQ box */
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 50%;
-    margin: 0 auto;
+    width: 63%;
+    margin: 2px auto;
 }
 
 .faq-section .card-header {
-    background-color: #444; /* Darker grey for the header */
-    border: 1px solid #555; /* Add border to the header */
+    background-color: #161616; /* Darker grey for the header */
+    border: 1px solid #03030381; /* Add border to the header */
 }
 
 .faq-section .btn-link {
-    color: white; /* White text for the button */
+    color: rgb(255, 255, 255); /* White text for the button */
     font-size: 16px; /* Adjust font size */
 }
 
 .faq-section .card-body {
     background-color: #222; /* Darker background for the body */
-    border-top: 1px solid #444; /* Add border at the top of the body */
+    border-top: 1px solid #2b2b2b; /* Add border at the top of the body */
 }
 
 .faq-section .card-body p {
-    color: #ccc; /* Lighter grey for the text inside the body */
+    color: #ffffff; /* Lighter grey for the text inside the body */
 }
 
 .faq-section .card-header h5 {

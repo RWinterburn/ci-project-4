@@ -12,9 +12,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),           # Root URL
+    path('', views.index, name='home'),           # Root URL
     path('home/', views.home, name='home'),       # Distinct path for home
     path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
     path('accounts/', include('allauth.urls')),   # Include allauth URLs
     path('instrumentals/', include('instrumentals.urls')),
     path('search/', views.search, name='search'), 

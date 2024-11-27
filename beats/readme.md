@@ -1,3 +1,7 @@
+## credit 
+
+microphone pic https://pixabay.com/photos/recording-studio-indoors-mic-1869560/
+
 
 ## to do list 
 
@@ -6,6 +10,7 @@ give users the option to delete their account and details off the website and da
 have an option to contact producer 
 fix stripe webhook and backend for pages
 meeting with brian is on the 29th 9clock
+clear certain things out of cart 
 
 
 

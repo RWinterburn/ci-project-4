@@ -8,9 +8,10 @@ from checkout.views import payment_success
 from profiles.models import Profile
 
 def index(request):
-    return render(request, 'base.html')  # This will render 'home.html', which can extend 'base.html'
+    return render(request, 'home.html')  # This will render 'home.html', which can extend 'base.html'
 
-
+def contact(request):
+    return render(request, 'contact.html')
 
 def home(request):
     return render(request, 'home.html')
