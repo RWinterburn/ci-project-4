@@ -7,7 +7,6 @@
 <div class="container-about">
     <div class="about-photo">
         <img src="{% static 'imgs/profile-img2.jpg' %}" alt="About Photo">
-
     </div>
     <div class="about-text">
         <h3>About Me</h3>
@@ -16,8 +15,78 @@
             With a background in things, I strive to bring creativity and dedication to everything I do.
         </p>
         <p>
-            
+            Here, you'll find more about my journey, projects, and experiences. I hope you find it inspiring!
         </p>
     </div>
 </div>
+
+<h2>Frequently Asked Questions</h2>
+<div class="accordion faq-section" id="faqAccordion">
+    <!-- FAQ Item 1 -->
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    What services do you offer?
+                </button>
+            </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+            <div class="card-body">
+                I offer a variety of services including music production, sound design, and customized beats for artists, content creators, and businesses.
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Item 2 -->
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    How can I contact you for a project?
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+            <div class="card-body">
+                You can contact me through my contact form on the website or directly through email. I’ll respond to inquiries as soon as possible.
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Item 3 -->
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    What is your process for creating custom beats?
+                </button>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+            <div class="card-body">
+                My process involves discussing the style and vibe you're looking for, followed by creating a rough draft. Once you're happy with the direction, I'll refine the beat and deliver it to you.
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Item 4 -->
+    <div class="card">
+        <div class="card-header" id="headingFour">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Can I request a revision on a beat I purchased?
+                </button>
+            </h5>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#faqAccordion">
+            <div class="card-body">
+                Yes! I offer revisions on purchased beats. Just let me know what changes you would like, and I’ll be happy to make the adjustments.
+            </div>
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}
+

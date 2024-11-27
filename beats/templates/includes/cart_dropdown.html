@@ -1,29 +1,40 @@
 <div class="nav-item dropdown position-relative">
-    <a href="{% url 'view_cart' %}" class="nav-link dropdown-toggle" id="cartDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-shopping-cart"></i> Cart
-        <p>{{ total_quantity }}</p>
-        
+    <a href="{% url 'view_cart' %}" 
+       class="nav-link dropdown-toggle d-flex align-items-center" 
+       id="cartDropdown" 
+       role="button" 
+       data-toggle="dropdown" 
+       aria-haspopup="true" 
+       aria-expanded="false">
+        <i class="fa fa-shopping-cart fa-lg"></i>
+        <span class="ml-1">Cart</span>
         {% if cart_item_count > 0 %}
-            <span class="badge badge-danger position-absolute" style="top: -5px; right: -10px;">{{ cart_item_count }}</span>
+            <span class="badge badge-danger position-absolute" style="top: 0; right: 0;">{{ cart_item_count }}</span>
         {% endif %}
     </a>
 
-    <div class="dropdown-menu" aria-labelledby="cartDropdown">
+    <div class="dropdown-menu dropdown-menu-right p-3" aria-labelledby="cartDropdown" style="min-width: 250px;">
         {% if cart_items %}
+            <h6 class="dropdown-header">Cart Summary</h6>
             {% for item in cart_items %}
-                <div class="dropdown-item">
-                    <p>{{ item.beat.title }} - Quantity: {{ item.quantity }}</p>
+                <div class="dropdown-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ item.beat.title }}</strong>
+                        <p class="small text-muted mb-0">Quantity: {{ item.quantity }}</p>
+                    </div>
+                    <span>${{ item.beat.price }}</span>
                 </div>
             {% endfor %}
             <div class="dropdown-divider"></div>
-            <div class="dropdown-item">
-                <p>Total Quantity: {{ total_quantity }}</p>
-                <p>Total Price: ${{ total_price }}</p>
-                <a href="{% url 'view_cart' %}">Proceed to Checkout</a>
+            <div class="dropdown-item text-center">
+                <p><strong>Total Quantity:</strong> {{ total_quantity }}</p>
+                <p><strong>Total Price:</strong> ${{ total_price }}</p>
+                <a href="{% url 'view_cart' %}" class="btn btn-primary btn-sm mt-2">Proceed to Checkout</a>
             </div>
         {% else %}
-            <div class="dropdown-item">
+            <div class="text-center">
                 <p>Your cart is empty.</p>
+                <a href="{% url 'beats' %}" class="btn btn-secondary btn-sm">Browse Beats</a>
             </div>
         {% endif %}
     </div>

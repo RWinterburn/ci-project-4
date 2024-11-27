@@ -9,6 +9,31 @@ body {background-color: black;
 .navbar {background-color: black;}
 .nav-link {color: white;}
 
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Center items within the nav */
+    align-items: center;
+    gap: 20px; /* Add spacing between nav items */
+    list-style-type: none; /* Remove bullet points from list items */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+.nav-link {
+    text-decoration: none; /* Remove underline from links */
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 10%;
+    transition: color 0.9s ease;
+}
+
+.nav-link:hover {
+    color: #000000; /* Text color on hover */
+    background-color: rgb(255, 255, 255); /* Background color on hover */
+    box-shadow: 0 4px 8px rgba(255, 84, 84, 0.664); /* Shadow around the element */
+    transition: color 0.9s ease, background-color 0.9s ease, box-shadow 0.9s ease; /* Smooth transition for all properties */
+    border-radius: 4px; /* Optional: Rounded corners for a better look */
+}
 
 
 
@@ -113,7 +138,7 @@ ul {
 .about-photo img {
     max-width: 500px;
     height: auto;
-    border-radius: 50%; /* Circular image */
+    border-radius: 10%; /* Circular image */
     border: 3px solid #444444;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -130,6 +155,47 @@ ul {
     color: #dddddd; /* Light gray for softer contrast */
     margin-bottom: 10px;
 }
+
+/* FAQ Section Styles */
+.faq-section {
+    background-color: #333; /* Dark grey background */
+    color: white; /* White text */
+    padding: 20px; /* Add some padding around the FAQ section */
+    border-radius: 8px; /* Rounded corners for the FAQ box */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.faq-section .card-header {
+    background-color: #444; /* Darker grey for the header */
+    border: 1px solid #555; /* Add border to the header */
+}
+
+.faq-section .btn-link {
+    color: white; /* White text for the button */
+    font-size: 16px; /* Adjust font size */
+}
+
+.faq-section .card-body {
+    background-color: #222; /* Darker background for the body */
+    border-top: 1px solid #444; /* Add border at the top of the body */
+}
+
+.faq-section .card-body p {
+    color: #ccc; /* Lighter grey for the text inside the body */
+}
+
+.faq-section .card-header h5 {
+    font-size: 18px; /* Larger font size for the FAQ questions */
+}
+
+.faq-section .card {
+    margin-bottom: 10px; /* Space between each FAQ item */
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {

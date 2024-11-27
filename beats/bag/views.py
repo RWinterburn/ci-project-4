@@ -2,8 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import CartItem
 from instrumentals.models import Beat
+from instrumentals.views import beat_list
 
 beats = Beat.objects.all()
+
+from django.shortcuts import redirect
 
 @login_required
 def add_to_cart(request, beat_id):
@@ -23,7 +26,9 @@ def add_to_cart(request, beat_id):
         cart_item.quantity += 1
         cart_item.save()
 
-    return render(request, 'instrumentals/beatlist.html', {'beats': beats})
+    # Redirect to prevent duplicate submissions on page refresh
+    return redirect('beats')  # Replace 'beatlist' with the name of the URL pattern for your beat list page
+
 
 
 @login_required
