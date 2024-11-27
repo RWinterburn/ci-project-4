@@ -1,4 +1,13 @@
 
+## to do list 
+
+Add css to all auth pages by getting the templates out of the original folder and overriding them 
+give users the option to delete their account and details off the website and database
+have an option to contact producer 
+fix stripe webhook and backend for pages
+meeting with brian is on the 29th 9clock
+
+
 
 # Beats
 Beats is a website where users can purchase royalty free beats and use them for their background music across different media.

@@ -1,17 +1,23 @@
 
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
+<h2>Main About Section</h2>
+<div class="container-about">
+    <div class="about-photo">
+        <img src="{% static 'imgs/profile-img2.jpg' %}" alt="About Photo">
 
-
-    <h2>Welcome to the about page</h2>
-    <p>This is the content for the about page of the site.</p>
-
-    <section class="contact">
-        <div>
-
-        </div>
-    
-    <div> </div></section>
+    </div>
+    <div class="about-text">
+        <h3>About Me</h3>
+        <p>
+            Welcome to my profile! I'm passionate about things, and I love sharing my journey with others. 
+            With a background in things, I strive to bring creativity and dedication to everything I do.
+        </p>
+        <p>
+            
+        </p>
+    </div>
+</div>
 {% endblock %}

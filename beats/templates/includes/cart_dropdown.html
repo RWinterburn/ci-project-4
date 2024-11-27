@@ -2,7 +2,7 @@
     <a href="{% url 'view_cart' %}" class="nav-link dropdown-toggle" id="cartDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-shopping-cart"></i> Cart
         <p>{{ total_quantity }}</p>
-        <p>${{ total_price }}</p>
+        
         {% if cart_item_count > 0 %}
             <span class="badge badge-danger position-absolute" style="top: -5px; right: -10px;">{{ cart_item_count }}</span>
         {% endif %}
