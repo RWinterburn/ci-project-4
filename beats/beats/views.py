@@ -13,6 +13,27 @@ def index(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        # Email content
+        subject = f"New Contact Form Submission from {name}"
+        body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+        recipient_list = ['your-email@example.com']  # Replace with your email
+        
+        try:
+            send_mail(subject, body, 'noreply@yourdomain.com', recipient_list)
+            messages.success(request, 'Your message has been sent successfully!')
+        except Exception as e:
+            messages.error(request, 'An error occurred. Please try again.')
+
+        return redirect('contact')  # Redirect to the same page or a thank-you page
+
+    return render(request, 'contact.html')
+
 def home(request):
     return render(request, 'home.html')
 
