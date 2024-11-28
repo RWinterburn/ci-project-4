@@ -249,3 +249,10 @@ ul {
         max-width: 120px;
     }
 }
+
+/* Home Page Styles */
+.home-page {
+    text-align: center;
+    padding: 50px;
+    background-image: url('/static/imgs/recording-studio.jpg');
+    background-size: cover;

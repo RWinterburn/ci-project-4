@@ -2,6 +2,33 @@
 
 
 {% block content %}
-    <h1 class="test">Welcome to the Home Page</h1>
-    <p>This is the content for the home page of the site.</p>
+<div class="home-page" style="text-align: center; padding: 50px; background-image: url('/static/imgs/recording-studio.jpg'); background-size: cover; background-position: center; color: white;">
+    <div class="overlay">
+        <h1 class="home">Welcome to Twin Beats</h1>
+        <p>
+            Explore royalty-free instrumentals for your videos or productions. Browse our library .
+        </p>
+        <a href="{% url 'beats' %}" class="btn btn-primary">Explore Library</a>
+    </div>
+</div>
+
+<div class="testimonials-section">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonials">
+        <div class="testimonial">
+            <p class="quote">"The beats here took my production to the next level. Highly recommended!"</p>
+            <p class="author">— Alex Smith</p>
+        </div>
+        <div class="testimonial">
+            <p class="quote">"Great quality instrumentals! Perfect for my video content."</p>
+            <p class="author">— Jamie Lee</p>
+        </div>
+        <div class="testimonial">
+            <p class="quote">"Affordable and professional beats! I use them for all my projects."</p>
+            <p class="author">— Chris Johnson</p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+
