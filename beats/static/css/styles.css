@@ -251,8 +251,133 @@ ul {
 }
 
 /* Home Page Styles */
+/* Home Page Styles */
 .home-page {
     text-align: center;
     padding: 50px;
     background-image: url('/static/imgs/recording-studio.jpg');
     background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.home-page .overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.home-page .home {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.home-page p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.home-page .btn.btn-primary {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #d3d3d3;
+    color: rgb(77, 77, 77);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.home-page .btn.btn-primary:hover {
+    background-color: #ffffff;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+/* Testimonials Section Styles */
+.testimonials-section {
+    padding: 50px;
+    background-color: #00000025;
+    text-align: center;
+}
+
+.testimonials-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.testimonial {
+    background-color: rgb(37, 37, 37);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.testimonial .quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.testimonial .author {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #dddddd;
+}
+
+/* Featured Songs Section Styles */
+.featured-songs-section {
+    padding: 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.featured-songs-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.featured-songs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.song {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.song img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+}
+
+.song h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #007bff;
+}
+
+.song p {
+    font-size: 1rem;
+    color: #555;
+}
