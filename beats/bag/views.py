@@ -29,6 +29,21 @@ def add_to_cart(request, beat_id):
     # Redirect to prevent duplicate submissions on page refresh
     return redirect('beats')  # Replace 'beatlist' with the name of the URL pattern for your beat list page
 
+@login_required
+def remove_from_cart(request, beat_id):
+    beat = get_object_or_404(Beat, id=beat_id)
+
+    # Update the session cart
+    bag = request.session.get('bag', {})
+    if str(beat.id) in bag:
+        del bag[str(beat.id)]
+        request.session['bag'] = bag
+
+    # Update the database cart
+    CartItem.objects.filter(user=request.user, beat=beat).delete()
+
+    # Redirect back to the cart page
+    return redirect('view_cart')  # Replace 'cart' with the name of your cart page URL pattern
 
 
 @login_required

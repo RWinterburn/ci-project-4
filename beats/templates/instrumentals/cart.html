@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Your Cart</h1>
+<div class="container my-5">
+    <h1 class="mb-4 text-center">Your Cart</h1>
 
-<ul>
-    {% for item in cart_items %}
-        <li>
-            <p>Title: {{ item.beat.title }}</p>
-            <p>Price: ${{ item.beat.price }}</p>
-            <p>Quantity: {{ item.quantity }}</p>
-            <p>Total for this item: ${{ item.total_price }}</p>
-        </li>
-    {% endfor %}
-</ul>
+    <div class="row">
+        {% for item in cart_items %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-dark">
+                    <h5 class="card-title">{{ item.beat.title }}</h5>
+                    <p class="card-text">
+                        <strong>Price:</strong> ${{ item.beat.price }}<br>
+                        <strong>Quantity:</strong> {{ item.quantity }}<br>
+                        <strong>Total:</strong> ${{ item.total_price }}
+                    </p>
+                    <form method="post" action="{% url 'remove_from_cart' item.beat.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
-<h2>Total Price: ${{ total_price }}</h2>
+    <div class="text-center my-4">
+        <h2 class="text-primary">Total Price: ${{ total_price }} <hr>
+            <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">Proceed to Checkout</a>
+    </div>
 
-<a href="{% url 'checkout' %}">Proceed to Checkout</a>
+
 
 {% endblock %}
-
-
