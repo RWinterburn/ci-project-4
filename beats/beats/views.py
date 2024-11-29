@@ -4,8 +4,12 @@ from django.db.models import Q
 from bag.models import CartItem
 from checkout.views import payment_success
  # Adjust this import based on your project structure
-
+from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
+
+
+
+
 
 def index(request):
     return render(request, 'home.html')  # This will render 'home.html', which can extend 'base.html'

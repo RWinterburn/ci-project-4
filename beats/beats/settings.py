@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu117.gitpod.io', '8000-rwinterburn-ciproject4-j341iks4fk8.ws-eu116.gitpod.io', '8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu116.gitpod.io']
 
+LOGIN_REDIRECT_URL = '/profiles/'
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu117.gitpod.io',]
 

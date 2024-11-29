@@ -3,6 +3,11 @@
 {% block content %}
 <h1>Available Beats</h1>
 
+{% if is_admin %}
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'add_beat' %}" class="btn btn-primary">Add New Beat</a>
+</div>
+{% endif %}
 <div class="grid-container">
     {% for beat in beats %}
     <div class="grid-item">

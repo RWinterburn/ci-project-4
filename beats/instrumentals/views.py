@@ -5,18 +5,23 @@ from .forms import BeatForm
 
  # Import your Beat model
 
+
 def beat_list(request):
     beats = Beat.objects.all()  # Fetch all Beat instances
     is_admin = request.user.is_authenticated and request.user.is_staff  # Check if user is an admin
     return render(request, 'instrumentals/beatlist.html', {'beats': beats, 'is_admin': is_admin})
 
+def is_admin(user):
+    return user.is_authenticated and user.is_staff
 
-
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
+from .forms import BeatForm
+from .models import Beat
 
 def is_admin(user):
     return user.is_authenticated and user.is_staff
 
-# Admin-only view for adding a new beat
 @login_required
 @user_passes_test(is_admin)
 def add_beat(request):
@@ -35,9 +40,12 @@ def add_beat(request):
 def delete_beat(request, beat_id):
     beat = get_object_or_404(Beat, id=beat_id)
     if request.method == 'POST':
+        # If the user confirmed the deletion (POST request), delete the beat
         beat.delete()
-        return redirect('beats')  # Redirect to the beat list after deletion
-    return render(request, 'instrumentals/delete_beat.html', {'beat': beat})
+          # Redirect to the beat list after deletion
+        return render(request, 'instrumentals/delete_beat.html', {'beat': beat})
+    return redirect('beats')
+
 
 
 @login_required

@@ -3,6 +3,7 @@ from django.conf import settings
 import uuid
 
 
+
 class Beat(models.Model):
     title = models.CharField(max_length=100)
     beat_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)  # Unique beat ID

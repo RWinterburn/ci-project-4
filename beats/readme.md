@@ -4,7 +4,8 @@ microphone pic https://pixabay.com/photos/recording-studio-indoors-mic-1869560/
 
 
 ## to do list 
-
+fix login direct url
+test all functions
 Add css to all auth pages by getting the templates out of the original folder and overriding them 
 give users the option to delete their account and details off the website and database
 have an option to contact producer 
