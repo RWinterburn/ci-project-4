@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Beat</title>
+</head>
+<body>
+    <h1>Edit Beat: {{ beat.title }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{% url 'beats' %}">Cancel</a>
+</body>
+</html>
+

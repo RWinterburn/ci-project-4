@@ -14,10 +14,26 @@
             <source src="{{ beat.audio_file.url }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
-        <a href="{% url 'add_to_cart' beat.id %}"><button>Add to Cart</button></a>
+
+        {% if is_admin %}
+        <!-- Form for deleting a beat -->
+        <form method="POST" action="{% url 'delete_beat' beat.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="color: red;">Delete</button>
+        </form>
+        <!-- Link to edit a beat -->
+        <a href="{% url 'edit_beat' beat.id %}">Edit</a>
+        {% endif %}
+
+        <!-- Add to Cart button -->
+        <form method="POST" action="{% url 'add_to_cart' beat.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+        </form>
     </div>
     {% endfor %}
-
-
-
+</div>
 {% endblock %}
+
+
+
