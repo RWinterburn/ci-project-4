@@ -156,7 +156,23 @@
 </script>
 
 
-    
+<script>
+    // Function to show a specific section and hide others
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.profile-section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    // Function to toggle details visibility
+    function toggleDetails(id) {
+        const details = document.getElementById(id);
+        details.style.display = details.style.display === "none" ? "block" : "none";
+    }
+</script>
+
 
 
 

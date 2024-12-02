@@ -1,70 +1,77 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>{{ profile.user }}'s Profile</h2>
-<p>Email: {{ profile.user.email }}</p>
-<p>Bio: {{ profile.bio }}</p>
-<p>Location: {{ profile.location }}</p>
-<p>Birth Date: {{ profile.birth_date }}</p>
+<div class="profile-container">
+    <!-- Navigation Bar -->
+    <nav class="profile-nav">
+        <button class="nav-link" onclick="showSection('profile-info')">Profile Info</button>
+        <button class="nav-link" onclick="showSection('purchased-beats')">Purchased Beats</button>
+        <button class="nav-link" onclick="showSection('order-history')">Order History</button>
+    </nav>
 
+    <!-- Profile Info Section -->
+    <section id="profile-info" class="profile-section">
+        <h2>{{ profile.user }}'s Profile</h2>
+        <p><strong>Email:</strong> {{ profile.user.email }}</p>
+        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+        <p><strong>Location:</strong> {{ profile.location }}</p>
+        <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
+    </section>
 
-<div class="purchased-beats-section">
-    <h2 class="purchased-beats-title">Purchased Beats</h2>
-    <ul class="purchased-beats-list">
-        {% for item in purchased_items %}
-            <li class="purchased-beat-item">
-                <!-- Beat Title with a click to toggle details -->
-                <div class="purchased-beat-header">
-                    <button class="toggle-details" onclick="toggleDetails('details-{{ forloop.counter }}')">
-                        <strong>{{ item.beat.title }}</strong>
-                    </button>
-                </div>
+    <!-- Purchased Beats Section -->
+    <section id="purchased-beats" class="profile-section" style="display: none;">
+        <h2 class="purchased-beats-title">Purchased Beats</h2>
+        <ul class="purchased-beats-list">
+            {% for item in purchased_items %}
+                <li class="purchased-beat-item">
+                    <div class="purchased-beat-header">
+                        <button class="toggle-details" onclick="toggleDetails('details-{{ forloop.counter }}')">
+                            <strong>{{ item.beat.title }}</strong>
+                        </button>
+                    </div>
+                    <div id="details-{{ forloop.counter }}" class="beat-details" style="display: none;">
+                        <img src="{{ item.beat.cover_image.url }}" alt="{{ item.beat.title }}" class="beat-cover">
+                        <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                        <p><strong>Total for this item:</strong> ${{ item.lineitem_total }}</p>
+                        {% if item.beat.audio_file %}
+                            <p><a href="{{ item.beat.audio_file.url }}" class="download-link" download>Download</a></p>
+                        {% else %}
+                            <p class="no-download">Download not available for this item.</p>
+                        {% endif %}
+                    </div>
+                </li>
+            {% empty %}
+                <p>No items were purchased.</p>
+            {% endfor %}
+        </ul>
+    </section>
 
-                <!-- Hidden Details Section -->
-                <div id="details-{{ forloop.counter }}" class="beat-details" style="display: none;">
-                    <img src="{{ item.beat.cover_image.url }}" alt="{{ item.beat.title }}" class="beat-cover">
-                    <p><strong>Quantity:</strong> {{ item.quantity }}</p>
-                    <p><strong>Total for this item:</strong> ${{ item.lineitem_total }}</p>
-                    {% if item.beat.audio_file %}
-                        <p>
-                            <a href="{{ item.beat.audio_file.url }}" class="download-link" download>Download</a>
-                        </p>
-                    {% else %}
-                        <p class="no-download">Download not available for this item.</p>
-                    {% endif %}
-                </div>
-            </li>
-        {% empty %}
-            <p>No items were purchased.</p>
-        {% endfor %}
-    </ul>
+    <!-- Order History Section -->
+    <section id="order-history" class="profile-section" style="display: none;">
+        <h3 class="order-history-title">Order History</h3>
+        {% if orders %}
+            <ul class="order-history-list">
+                {% for order in orders %}
+                <li class="order-item">
+                    <div class="order-header">
+                        <button class="toggle-order-details" onclick="toggleDetails('order-details-{{ forloop.counter }}')">
+                            <strong>Order #{{ order.order_number }}</strong> - {{ order.date | date:"M d, Y" }} - ${{ order.grand_total }}
+                        </button>
+                    </div>
+                    <div id="order-details-{{ forloop.counter }}" class="order-details" style="display: none;">
+                        <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+                        <p><strong>Date:</strong> {{ order.date | date:"M d, Y" }}</p>
+                        <p><strong>Total:</strong> ${{ order.grand_total }}</p>
+                        <p><strong>Status:</strong> Instrumentals sent to {{ order.email }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-orders-message">You have no past orders.</p>
+        {% endif %}
+    </section>
 </div>
 
-<h3>Order History</h3>
-{% if orders %}
-    <table>
-        <thead>
-            <tr>
-                <th>Order Number</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for order in orders %}
-            <tr>
-                <td>{{ order.order_number }}</td>
-                <td>{{ order.date | date:"M d, Y" }}</td>
-                <td>${{ order.grand_total }}</td>
-                <td>Instrumentals sent to {{ order.email }}</td>
-                
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>You have no past orders.</p>
-{% endif %}
+
 {% endblock %}
