@@ -7,6 +7,39 @@
 <p>Location: {{ profile.location }}</p>
 <p>Birth Date: {{ profile.birth_date }}</p>
 
+
+<div class="purchased-beats-section">
+    <h2 class="purchased-beats-title">Purchased Beats</h2>
+    <ul class="purchased-beats-list">
+        {% for item in purchased_items %}
+            <li class="purchased-beat-item">
+                <!-- Beat Title with a click to toggle details -->
+                <div class="purchased-beat-header">
+                    <button class="toggle-details" onclick="toggleDetails('details-{{ forloop.counter }}')">
+                        <strong>{{ item.beat.title }}</strong>
+                    </button>
+                </div>
+
+                <!-- Hidden Details Section -->
+                <div id="details-{{ forloop.counter }}" class="beat-details" style="display: none;">
+                    <img src="{{ item.beat.cover_image.url }}" alt="{{ item.beat.title }}" class="beat-cover">
+                    <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                    <p><strong>Total for this item:</strong> ${{ item.lineitem_total }}</p>
+                    {% if item.beat.audio_file %}
+                        <p>
+                            <a href="{{ item.beat.audio_file.url }}" class="download-link" download>Download</a>
+                        </p>
+                    {% else %}
+                        <p class="no-download">Download not available for this item.</p>
+                    {% endif %}
+                </div>
+            </li>
+        {% empty %}
+            <p>No items were purchased.</p>
+        {% endfor %}
+    </ul>
+</div>
+
 <h3>Order History</h3>
 {% if orders %}
     <table>

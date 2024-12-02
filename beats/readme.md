@@ -12,7 +12,8 @@ have an option to contact producer
 fix stripe webhook and backend for pages
 meeting with brian is on the 29th 9clock
 clear certain things out of cart 
-
+Add option to download purchased beats on profile
+sort out stripe webhook
 
 
 # Beats
