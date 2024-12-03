@@ -42,10 +42,12 @@ def checkout(request):
                         currency='usd',
                         metadata={'order_id': order.id}  # Attach order_id to the metadata
                     )
+                
                     client_secret = intent.client_secret
                 except stripe.error.StripeError as e:
                     messages.error(request, f"Payment processing error: {e.user_message}")
                     return redirect('view_cart')
+                
 
                 # Redirect to the payment success page
                 return redirect(reverse('payment_success', args=[order.order_number]))
@@ -66,7 +68,7 @@ def checkout(request):
     # Calculate the total and initialize Stripe payment
     grand_total = sum(Beat.objects.get(id=item_id).price * quantity for item_id, quantity in bag.items())
     try:
-        intent = stripe.PaymentIntent.create(amount=int(grand_total * 100), currency='usd')
+        intent = stripe.PaymentIntent.create(amount=int(grand_total * 100), currency='gbp')
         client_secret = intent.client_secret
     except stripe.error.StripeError as e:
         messages.error(request, f"Payment processing error: {e.user_message}")
@@ -84,41 +86,6 @@ def checkout(request):
 
 
 
-def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    
-    event = None
-    
-    try:
-        # Verify the webhook signature
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
-    except ValueError as e:
-        # Invalid payload
-        return JsonResponse({"status": "error"}, status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        raise PermissionDenied("Invalid signature")
-
-    # Handle the event
-    if event['type'] == 'payment_intent.succeeded':
-        session = event['data']['object']  # Contains the session object
-        order_id = session['metadata']['order_id']  # Retrieve order_id from metadata
-
-        try:
-            # Fetch the order using order_id
-            order = Order.objects.get(id=order_id)
-            order.status = 'paid'  # Update the order status to 'paid'
-            order.save()
-
-            # Optionally send an email or perform other actions here
-
-        except Order.DoesNotExist:
-            return JsonResponse({"status": "error", "message": "Order not found"}, status=404)
-
-    return JsonResponse({"status": "success"}, status=200)
 
 
 

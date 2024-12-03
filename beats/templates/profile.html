@@ -4,9 +4,9 @@
 <div class="profile-container">
     <!-- Navigation Bar -->
     <nav class="profile-nav">
-        <button class="nav-link" onclick="showSection('profile-info')">Profile Info</button>
-        <button class="nav-link" onclick="showSection('purchased-beats')">Purchased Beats</button>
-        <button class="nav-link" onclick="showSection('order-history')">Order History</button>
+        <button class="nav-link-profile" onclick="showSection('profile-info')">Profile Info</button>
+        <button class="nav-link-profile" onclick="showSection('purchased-beats')">Purchased Beats</button>
+        <button class="nav-link-profile" onclick="showSection('order-history')">Order History</button>
     </nav>
 
     <!-- Profile Info Section -->
@@ -21,16 +21,28 @@
     <!-- Purchased Beats Section -->
     <section id="purchased-beats" class="profile-section" style="display: none;">
         <h2 class="purchased-beats-title">Purchased Beats</h2>
-        <ul class="purchased-beats-list">
+        <ul class="purchased-beats-grid">
             {% for item in purchased_items %}
                 <li class="purchased-beat-item">
-                    <div class="purchased-beat-header">
+                    <!-- Beat Cover Image -->
+                    <img src="{{ item.beat.cover_image.url }}" alt="{{ item.beat.title }}" class="beat-cover">
+    
+                    <!-- Beat Title with Show Details Button -->
+                    <p class="beat-title">
                         <button class="toggle-details" onclick="toggleDetails('details-{{ forloop.counter }}')">
-                            <strong>{{ item.beat.title }}</strong>
+                            <strong>
+                                {% if item.beat.title %}
+                                    {{ item.beat.title }}
+                                {% else %}
+                                    Error loading beat contact admin
+                                {% endif %}
+                            </strong>
+                            
                         </button>
-                    </div>
-                    <div id="details-{{ forloop.counter }}" class="beat-details" style="display: none;">
-                        <img src="{{ item.beat.cover_image.url }}" alt="{{ item.beat.title }}" class="beat-cover">
+                    </p>
+    
+                    <!-- Hidden Beat Details -->
+                    <div id="details-{{ forloop.counter }}" class="beat-details">
                         <p><strong>Quantity:</strong> {{ item.quantity }}</p>
                         <p><strong>Total for this item:</strong> ${{ item.lineitem_total }}</p>
                         {% if item.beat.audio_file %}
@@ -45,6 +57,7 @@
             {% endfor %}
         </ul>
     </section>
+    
 
     <!-- Order History Section -->
     <section id="order-history" class="profile-section" style="display: none;">
