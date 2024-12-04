@@ -3,6 +3,10 @@ import uuid
 from django.db.models import Sum
 from instrumentals.models import Beat
 
+from django.db import models
+from instrumentals.models import Beat
+import uuid
+
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
@@ -46,7 +50,3 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.beat.title} on Order {self.order.order_number}"
-
-
-
-

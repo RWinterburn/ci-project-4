@@ -33,20 +33,6 @@ def checkout(request):
                 # Clear the bag
                 request.session.pop('bag', None)
                 print('works')
-
-                # Create a Stripe PaymentIntent
-                grand_total = sum(Beat.objects.get(id=item_id).price * quantity for item_id, quantity in bag.items())
-                try:
-                    intent = stripe.PaymentIntent.create(
-                        amount=int(grand_total * 100), 
-                        currency='usd',
-                        metadata={'order_id': order.id}  # Attach order_id to the metadata
-                    )
-                
-                    client_secret = intent.client_secret
-                except stripe.error.StripeError as e:
-                    messages.error(request, f"Payment processing error: {e.user_message}")
-                    return redirect('view_cart')
                 
 
                 # Redirect to the payment success page
