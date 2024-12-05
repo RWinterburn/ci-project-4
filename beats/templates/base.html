@@ -67,83 +67,81 @@
 
     <!---stripe-->
     <script src="https://js.stripe.com/v3/"></script>
-<script>
-    var stripe_public_key = "{{ stripe_public_key }}";
-    var client_secret = "{{ client_secret }}";
-    var order_number = "{{ order_number }}";
-    console.log("Stripe Public Key:", stripe_public_key);  // Assuming you pass this to the template
-
-    // Initialize Stripe
-    var stripe = Stripe(stripe_public_key);
-    var elements = stripe.elements();
-    var card = elements.create('card');
-    card.mount('#card-element');
+    <script>
+        var stripe_public_key = "{{ stripe_public_key }}";
+        const client_secret = "{{ client_secret }}";
+        var order_number = "{{ order_number }}";
+        console.log("Stripe Public Key:", stripe_public_key);  // Assuming you pass this to the template
     
-    var form = document.getElementById('payment-form');
-    var submitButton = document.getElementById('submit-button');
-    var cardErrors = document.getElementById('card-errors');
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+        // Initialize Stripe
+        var stripe = Stripe(stripe_public_key);  // Correctly use stripe_public_key variable
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+        
+        var form = document.getElementById('payment-form');
+        var submitButton = document.getElementById('submit-button');
+        var cardErrors = document.getElementById('card-errors');
     
-        // Disable the submit button and show loading indicator
-        submitButton.disabled = true;
-        submitButton.textContent = 'Processing...';
-    
-        stripe.confirmCardPayment(client_secret, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    name: document.getElementById('id_full_name').value,
-                    email: document.getElementById('id_email').value,
-                    phone: document.getElementById('id_phone_number').value,
-                    address: {
-                        line1: document.getElementById('id_street_address1').value,
-                        line2: document.getElementById('id_street_address2').value,
-                        city: document.getElementById('id_town_or_city').value,
-                        postal_code: document.getElementById('id_postcode').value,
-                        country: document.getElementById('id_country').value,
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+        
+            // Disable the submit button and show loading indicator
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+        
+            stripe.confirmCardPayment(client_secret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: document.getElementById('id_full_name').value,
+                        email: document.getElementById('id_email').value,
+                        phone: document.getElementById('id_phone_number').value,
+                        address: {
+                            line1: document.getElementById('id_street_address1').value,
+                            line2: document.getElementById('id_street_address2').value,
+                            city: document.getElementById('id_town_or_city').value,
+                            postal_code: document.getElementById('id_postcode').value,
+                            country: document.getElementById('id_country').value,
+                        },
                     },
                 },
-            },
-        }).then(function(result) {
-            if (result.error) {
-                // Show the error
+            }).then(function(result) {
+                if (result.error) {
+                    // Show the error
+                    var errorDiv = document.getElementById('card-errors');
+                    var html = `
+                        <span class="icon" role="alert">
+                        <i class="fas fa-times"></i>
+                        </span>
+                        <span>${result.error.message}</span>`;
+                    $(errorDiv).html(html);
+                    $('#payment-form').fadeToggle(100); // Hide the form
+                    $('#loading-overlay').fadeToggle(100); // Show the loading overlay
+                    card.update({ 'disabled': false }); // Enable the card field
+                    $('#submit-button').attr('disabled', false); // Re-enable the submit button
+                } else {
+                    if (result.paymentIntent.status === 'succeeded') {
+                        form.submit();
+                    }
+                }
+            }).catch(function(error) {
+                // Handle any unexpected errors
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
                     <span class="icon" role="alert">
                     <i class="fas fa-times"></i>
                     </span>
-                    <span>${result.error.message}</span>`;
+                    <span>${error.message}</span>`;
                 $(errorDiv).html(html);
-                $('#payment-form').fadeToggle(100); // Hide the form
-                $('#loading-overlay').fadeToggle(100); // Show the loading overlay
-                card.update({ 'disabled': false }); // Enable the card field
-                $('#submit-button').attr('disabled', false); // Re-enable the submit button
-            } else {
-                if (result.paymentIntent.status === 'succeeded') {
-                    form.submit()
-                    // Payment succeeded, redirect to success page
-                    
-                }
-            }
-        }).catch(function(error) {
-            // Handle any unexpected errors
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${error.message}</span>`;
-            $(errorDiv).html(html);
-            $('#payment-form').fadeToggle(100);
-            $('#loading-overlay').fadeToggle(100);
-            card.update({ 'disabled': false });
-            $('#submit-button').attr('disabled', false);
+                $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
+                card.update({ 'disabled': false });
+                $('#submit-button').attr('disabled', false);
+            });
         });
-    });
-</script>
-
+    </script>
+    
 <script>
     function toggleDetails(id) {
         const details = document.getElementById(id);
