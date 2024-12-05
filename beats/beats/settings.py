@@ -12,10 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from decouple import config
 from pathlib import Path
 import os
-import environ
 
-env = environ.Env()
-environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -171,8 +168,9 @@ SITE_ID = 1
 
 
 
+
 STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-
 STRIPE_WH_SECRET = config('STRIPE_WH_SECRET')
+
