@@ -40,10 +40,10 @@ def checkout(request):
             'phone_number': request.POST['phone_number'],
             'country': request.POST['country'],
             'postcode': request.POST['postcode'],
-            'town_or_city': request.POST['town_or_city'],
+            'city': request.POST['city'],
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
-            'county': request.POST['county'],
+            
         }
 
         order_form = OrderForm(form_data)
@@ -91,19 +91,19 @@ def checkout(request):
 
         if request.user.is_authenticated:
             try:
-                profile = UserProfile.objects.get(user=request.user)
+                profile = Profile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
-                    'phone_number': profile.default_phone_number,
-                    'country': profile.default_country,
-                    'postcode': profile.default_postcode,
-                    'town_or_city': profile.default_town_or_city,
-                    'street_address1': profile.default_street_address1,
-                    'street_address2': profile.default_street_address2,
-                    'county': profile.default_county,
+                    'full_name': profile.full_name,
+                    'email': profile.email,
+                    'phone_number': profile.phone_number,
+                    'country': profile.country,
+                    'postcode': profile.postal_code,
+                    'city': profile.city,
+                    'street_address1': profile.street_address1,
+                    'street_address2': profile.street_address2,
+                    
                 })
-            except UserProfile.DoesNotExist:
+            except Profile.DoesNotExist:
                 order_form = OrderForm()
         else:
             order_form = OrderForm()
@@ -132,25 +132,27 @@ def payment_success(request, order_number):
         if save_info:
             profile_data = {
                 'phone_number': order.phone_number,
+                'email': profile.email,
                 'country': order.country,
                 'postcode': order.postcode,
-                'town_or_city': order.town_or_city,
+                'city': order.city,
                 'street_address1': order.street_address1,
                 'street_address2': order.street_address2,
-                'state': order.state,
+                
             }
-            profile_form = UserProfileForm(profile_data, instance=profile)
+            profile_form = ProfileForm(profile_data, instance=profile)
             if profile_form.is_valid():
                 profile_form.save()
 
     messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
-
+    purchased_items = OrderLineItem.objects.filter(order=order)
     if 'bag' in request.session:
         del request.session['bag']
 
     template = 'checkout/payment_success.html'
     context = {
         'order': order,
+        'purchased_items': purchased_items,
     }
 
     return render(request, template, context)

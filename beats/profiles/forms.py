@@ -14,18 +14,20 @@ class ProfileForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
+            'full_name': 'Full Name',
+            'email': 'email',
             'phone_number': 'Phone Number',
-            'postcode': 'Postal Code',
+            'postal_code': 'Postal Code',
             'city': 'Town or City',
-            'address_line1': 'Street Address 1',
-            'address_line2': 'Street Address 2',
+            'street_address1': 'Street Address 1',
+            'street_address2': 'Street Address 2',
             'state':'state',
             'country': 'Country',
         }
 
-        self.fields['default_phone_number'].widget.attrs['autofocus'] = True
+        self.fields['phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if field != 'default_country':
+            if field != 'country':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
                 else:
