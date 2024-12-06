@@ -68,16 +68,20 @@
     <!---stripe-->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
-        var stripe_public_key = "{{ stripe_public_key }}";
-        const client_secret = "{{ client_secret }}";
-        var order_number = "{{ order_number }}";
-        console.log("Stripe Public Key:", stripe_public_key);  // Assuming you pass this to the template
-    
-        // Initialize Stripe
-        var stripe = Stripe(stripe_public_key);  // Correctly use stripe_public_key variable
-        var elements = stripe.elements();
-        var card = elements.create('card');
-        card.mount('#card-element');
+        console.log('IN STRIPE ELEMENTS')
+       var stripe_public_key = "{{ stripe_public_key }}";  // This should now work
+       console.log('SPK:', stripe_public_key)
+    const client_secret = "{{ client_secret }}";  // Client secret for the Stripe payment intent
+
+    // Check if the public key is set
+    if (!stripe_public_key) {
+        console.error("Stripe public key is missing!");
+    }
+
+    var stripe = Stripe(stripe_public_key);  // Initialize Stripe with the public key
+    const elements = stripe.elements();
+    const card = elements.create('card');
+    card.mount('#card-element'); 
         
         var form = document.getElementById('payment-form');
         var submitButton = document.getElementById('submit-button');

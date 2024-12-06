@@ -10,8 +10,13 @@ from instrumentals.models import Beat
 from profiles.models import Profile
 from profiles.forms import ProfileForm
 from bag.context_processors import cart_items
+import logging
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+logger = logging.getLogger(__name__)
+stripe_public_key = settings.STRIPE_PUBLIC_KEY
+
+print('SPK: ', stripe_public_key)
 
 @require_POST
 def cache_checkout_data(request):
@@ -24,8 +29,11 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
+        # Log the error for debugging purposes
+        logger.error(f"Error in cache_checkout_data: {e}")
         messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
-        return HttpResponse(content=e, status=400)
+        return HttpResponse(content=f"Error: {e}", status=400)
+
 
 def checkout(request):
     stripe_public_key=settings.STRIPE_PUBLIC_KEY
@@ -33,7 +41,10 @@ def checkout(request):
 
     print("Stripe Public Key:", stripe_public_key)
 
+    print('REQUEST: ', request)
+
     if request.method == 'POST':
+        print('WH : ', request.POST.get('client_secret').split('_secret')[0])
         bag = request.session.get('bag', {})
 
         form_data = {
@@ -88,7 +99,7 @@ def checkout(request):
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
-            currency='gbp',
+            currency=settings.STRIPE_CURRENCY,
         )
 
         if request.user.is_authenticated:

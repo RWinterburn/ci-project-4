@@ -13,6 +13,11 @@ from decouple import config
 from pathlib import Path
 import os
 
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -170,7 +175,9 @@ SITE_ID = 1
 
 
 STRIPE_CURRENCY = 'gbp'
-STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-STRIPE_WH_SECRET = config('STRIPE_WH_SECRET')
+# Stripe keys
+STRIPE_PUBLIC_KEY = ('pk_test_51QMs27DNIGFfmTD08gW65dE0pAuBD5kuuZSiJgXoMpwkVHBVkso5IRVXHupM6IWNzqosRiSIEdO5p2PpH9RDh4p900aCJeCn5d')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET')
+print('WH: ', STRIPE_WH_SECRET)
 

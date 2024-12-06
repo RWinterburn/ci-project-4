@@ -5,12 +5,14 @@ from django.views.decorators.http import require_POST
 from .webhook_handler import StripeWH_Handler  # Import your handler class
 import stripe
 
+
 @require_POST
 @csrf_exempt
 def webhook(request):
     """
     Handle incoming Stripe webhooks.
     """
+    client_secret = settings.STRIPE_SECRET_KEY
     wh_secret = settings.STRIPE_WH_SECRET
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
