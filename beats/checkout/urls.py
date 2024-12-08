@@ -2,6 +2,7 @@ from django.urls import path
   # Assuming 'views' contains 'checkout' and other views
 from . import views
 from .webhooks import webhook
+
  # Importing 'view_cart' from the 'bag' app
 
 urlpatterns = [

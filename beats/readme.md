@@ -15,6 +15,8 @@ clear certain things out of cart
 Add option to download purchased beats on profile
 sort out stripe webhook
 finish custom sign in sign out sign up page
+neaten up files for deployment 
+
 
 
 # Beats

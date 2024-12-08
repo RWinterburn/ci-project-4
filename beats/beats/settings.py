@@ -14,10 +14,10 @@ from pathlib import Path
 import os
 
 import os
-from dotenv import load_dotenv
+from dotenv import read_dotenv
 
 # Load environment variables from .env file
-load_dotenv()
+read_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,11 +33,11 @@ SECRET_KEY = 'django-insecure-qbvu(n2$xjb1o(9nbfe_!ay%x#z^)51vzmm_55pjd$+itrr-p)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '8000-rwinterburn-ciproject4-e3jnjjwfa8p.ws.codeinstitute-ide.net','8000-rwinterburn-ciproject4-cnhtlmzoj3b.ws-eu117.gitpod.io','8000-rwinterburn-ciproject4-vqkeogj33da.ws-eu117.gitpod.io', '8000-rwinterburn-ciproject4-j341iks4fk8.ws-eu116.gitpod.io', '8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu116.gitpod.io']
+ALLOWED_HOSTS = [ '8000-rwinterburn-ciproject4-e3jnjjwfa8p.ws.codeinstitute-ide.net','8000-rwinterburn-ciproject4-5lr2qut07wl.ws.codeinstitute-ide.net','8000-rwinterburn-ciproject4-cnhtlmzoj3b.ws-eu117.gitpod.io','8000-rwinterburn-ciproject4-vqkeogj33da.ws-eu117.gitpod.io', '8000-rwinterburn-ciproject4-j341iks4fk8.ws-eu116.gitpod.io', '8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu116.gitpod.io']
 
 LOGIN_REDIRECT_URL = '/profiles/'
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-rwinterburn-ciproject4-e3jnjjwfa8p.ws.codeinstitute-ide.net','https://8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu117.gitpod.io', 'https://8000-rwinterburn-ciproject4-vqkeogj33da.ws-eu117.gitpod.io', 'https://8000-rwinterburn-ciproject4-cnhtlmzoj3b.ws-eu117.gitpod.io',]
+CSRF_TRUSTED_ORIGINS = ['https://8000-rwinterburn-ciproject4-5lr2qut07wl.ws.codeinstitute-ide.net', 'https://8000-rwinterburn-ciproject4-e3jnjjwfa8p.ws.codeinstitute-ide.net','https://8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu117.gitpod.io', 'https://8000-rwinterburn-ciproject4-vqkeogj33da.ws-eu117.gitpod.io', 'https://8000-rwinterburn-ciproject4-cnhtlmzoj3b.ws-eu117.gitpod.io',]
 
 # Application definition
 
@@ -180,4 +180,3 @@ STRIPE_PUBLIC_KEY = ('pk_test_51QMs27DNIGFfmTD08gW65dE0pAuBD5kuuZSiJgXoMpwkVHBVk
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET')
 print('WH: ', STRIPE_WH_SECRET)
-
