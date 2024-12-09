@@ -10,6 +10,7 @@ urlpatterns = [
     path('payment_success/<str:order_number>/', views.payment_success, name='payment_success'),
     path('cache_checkout_data/', views.cache_checkout_data, name='cache_checkout_data'),
     path('wh/', webhook, name='webhook'),
+
 ]
 
 

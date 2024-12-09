@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Order
+from checkout.models import Order
 
 
 class StripeWH_Handler:
@@ -24,6 +24,7 @@ class StripeWH_Handler:
         stripe_pid = intent.id
         metadata = intent.metadata
         order_number = metadata.get('order_number')
+        
 
         try:
             order = Order.objects.get(order_number=order_number)
@@ -43,6 +44,15 @@ class StripeWH_Handler:
             )
 
     def handle_payment_intent_payment_failed(self, event):
+        """
+        Handle the payment_intent.payment_failed webhook from Stripe.
+        """
+        return HttpResponse(
+            content=f'Webhook received: {event["type"]}',
+            status=200
+        )
+
+    def handle_payment_intent_created(self, event):
         """
         Handle the payment_intent.payment_failed webhook from Stripe.
         """

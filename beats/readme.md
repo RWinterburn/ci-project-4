@@ -30,7 +30,7 @@ The "Beats" website is designed to create a vibrant and interactive community pl
 ### User Authentication and Access Control
 
 **Rationale:** 
-Restricting certain actions, such as posting reviews, to authenticated users helps maintain a high quality of content and encourages genuine contributions. By requiring users to sign up and log in, the site ensures accountability and enhances security. This restriction helps prevent spam and misuse, providing a trustworthy environment for sharing reviews.
+Restricting certain actions, such as posting reviews, to authenticated users helps maintain a high quality of content and encourages genuine contributions. By requiring users to sign up and log in, the site ensures accountability and enhances security. This restriction helps prevent spam and misuse, providing a trustworthy environment for uploading beats and purchasing beats
 
 ### Blog and Gig Review System
 
@@ -245,17 +245,14 @@ This schema ensures that data is organized efficiently and relationships between
 |:--------------------------------------------|:----------------------------------------------------------:|----------:|
 | View Home Page                              | Page displays a title, intro section, and content based on user status | works     |
 | Visit page as unauthenticated user          | Login prompt with sign-up and sign-in options are displayed | works     |
-| Visit page as authenticated user            | Login prompt is not visible; user sees gig reviews and posts | works     |
-| Check blog post display                     | Blog posts are listed with title, content, author, and timestamp | works     |
-| Attempt to edit a post as post owner        | Edit option is visible and functional for the post owner    | works     |
-| Attempt to delete a post as post owner      | Delete option is visible and functional for the post owner  | works     |
-| Attempt to edit/delete a post as non-owner  | Edit and Delete options are not visible for non-owners      | works     |
-| Attempt to edit/delete a post as admin      | Edit and Delete options are visible and functional for admin | works     |
-| Add a comment to a post                     | Comment is successfully added and displayed under the post  | works     |
-| Delete own comment                          | Delete option is visible and comment is successfully removed | works     |
-| Attempt to delete comment as non-owner      | Delete option is not visible for comments made by others    | works     |
+| Visit page as authenticated user            | Login prompt is not visible; user sees gig beats and options to buy beats | works     |
+| beat cards are editble for authenticated admin                    | Beats are listed with title, content, author, and are editable | works     |
+| Attempt to edit a beat as admin       | Edit option is visible and functional for the admin   | works     |
+| Attempt to delete a beat as admin    | Delete option is visible and functional for the post owner  | works     |
+| Attempt to edit/delete a beat as non-owner  | Edit and Delete options are not visible for non-owners      | works     |
+| Attempt to edit/delete a beat as admin      | Edit and Delete options are visible and functional for admin | works     |
 | Submit any form without CSRF token          | Form submission fails, CSRF token error is shown            | works     |
-| View post with comments                     | Comments are displayed with content, author, and timestamp  | works     |
+| click play button underneath song                | plays the beat corosponding to the song                | works     |
 | View post without comments                  | "No comments yet" message is displayed                      | works     |
 | View page with no blog posts                | "No reviews available" message is displayed                 | works     |
 
