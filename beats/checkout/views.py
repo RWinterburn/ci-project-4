@@ -37,7 +37,6 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
-
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -60,12 +59,15 @@ def checkout(request):
         if order_form.is_valid():
             # Save the order object with commit=False so we can modify it before saving
             order = order_form.save(commit=False)
-            pid = request.POST.get('client_secret').split('_secret')[0]
+            pid = extract_pid(request.POST.get('client_secret'))
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             
+            # Save the order to generate the order_number
             order.save()
-            order_number = order.order_number
+            
+            order_number = order.order_number  # Now we can access the order_number
+
             # Process line items in the cart
             for item_id, quantity in bag.items():
                 try:
@@ -74,15 +76,23 @@ def checkout(request):
                         order=order,
                         beat=beat,
                         quantity=quantity,
-                        
                     )
                 except Beat.DoesNotExist:
-                    messages.error(request, (
-                        "One of the items in your bag wasn't found in our database. "
-                        "Please call us for assistance!")
-                    )
+                    messages.error(request, "One of the items in your bag wasn't found. Please call us for assistance!")
                     order.delete()  # Clean up the partially created order
                     return redirect(reverse('view_bag'))
+
+            # Now create the PaymentIntent with the saved order details
+            stripe.api_key = stripe_secret_key
+            stripe_total = round(current_bag['total_price'] * 100)  # Ensure this total is calculated properly
+            intent = stripe.PaymentIntent.create(
+                amount=stripe_total,
+                currency='gbp',
+                metadata={
+                    'cart_items': json.dumps(bag),
+                    'order_number': order_number  # Use the order_number after the order is saved
+                }
+            )
 
             # Save user info if needed
             request.session['save_info'] = 'save-info' in request.POST
@@ -92,8 +102,7 @@ def checkout(request):
         else:
             # If the form is invalid, show the error messages
             messages.error(request, 'There was an error with your form. Please double check your information.')
-            print(order_form.errors)  # Debugging form errors
-
+            logger.error(f"Order form errors: {order_form.errors}")
     else:
         # Handle GET request when displaying the checkout page
         bag = request.session.get('bag', {})
@@ -104,48 +113,17 @@ def checkout(request):
         current_bag = cart_items(request)
         total = current_bag['total_price']
         stripe_total = round(total * 100)
+
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
-            currency='gbp',  # Update with your currency
-            metadata = {
-    'cart_items': json.dumps(bag),  # Bag data as a JSON string
-    'order': order # The order number saved earlier
-}
-
-            
-            
-              # Store the cart data in metadata
+            currency='gbp',
+            metadata={
+                'cart_items': json.dumps(bag),
+                # The order number can only be accessed after the order is saved
+            }
         )
 
-        # Populate the order form with the user's profile if authenticated
-        if request.user.is_authenticated:
-            try:
-                profile = Profile.objects.get(user=request.user)
-                order_form = OrderForm(initial={
-                    'full_name': profile.full_name,
-                    'email': profile.email,
-                    'phone_number': profile.phone_number,
-                    'country': profile.country,
-                    'postcode': profile.postal_code,
-                    'city': profile.city,
-                    'street_address1': profile.street_address1,
-                    'street_address2': profile.street_address2,
-                })
-            except Profile.DoesNotExist:
-                order_form = OrderForm()
-        else:
-            order_form = OrderForm()
-
-    # Render the checkout template with the necessary context
-    template = 'checkout/checkout.html'
-    context = {
-        'order_form': order_form,
-        'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-    }
-
-    return render(request, template, context)
 
 
 
