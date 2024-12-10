@@ -6,6 +6,8 @@ from checkout.views import payment_success
  # Adjust this import based on your project structure
 from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
+from django.core.mail import send_mail
+from django.contrib import messages
 
 
 
@@ -14,29 +16,42 @@ from profiles.models import Profile
 def index(request):
     return render(request, 'home.html')  # This will render 'home.html', which can extend 'base.html'
 
-def contact(request):
-    return render(request, 'contact.html')
 
-def contact_view(request):
+
+def contact(request):
     if request.method == 'POST':
+        # Get form data
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        
-        # Email content
+
+        # Construct the subject and message
         subject = f"New Contact Form Submission from {name}"
-        body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
-        recipient_list = ['your-email@example.com']  # Replace with your email
+        message_body = f"""
+        You have a new message from the contact form on your website.
+
+        Name: {name}
+        Email: {email}
         
+        Message:
+        {message}
+        """
+
         try:
-            send_mail(subject, body, 'noreply@yourdomain.com', recipient_list)
-            messages.success(request, 'Your message has been sent successfully!')
+            # Send the email to the admin
+            send_mail(
+                subject,
+                message_body,
+                settings.DEFAULT_FROM_EMAIL,  # From email (your app's email)
+                ['twintwobeats@gmail.com'],  # Admin email (replace with the admin's email)
+                fail_silently=False,  # Set to True if you don't want to see errors
+            )
+            messages.success(request, 'Your message has been sent successfully!')  # Optional success message
+            return redirect('contact')  # Redirect to avoid form resubmission
         except Exception as e:
-            messages.error(request, 'An error occurred. Please try again.')
+            messages.error(request, f"An error occurred: {e}")  # Display the error (optional)
 
-        return redirect('contact')  # Redirect to the same page or a thank-you page
-
-    return render(request, 'contact.html')
+    return render(request, 'contact.html')  # Render the form if GET request
 
 def home(request):
     return render(request, 'home.html')
