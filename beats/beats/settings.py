@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 import os
-from dotenv import read_dotenv
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
 read_dotenv()
