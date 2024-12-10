@@ -18,14 +18,24 @@ def index(request):
 
 
 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib import messages  # ✅ Required to display feedback messages
+from django.conf import settings
+
 def contact(request):
     if request.method == 'POST':
-        # Get form data
+        # Get the form data
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
 
-        # Construct the subject and message
+        # Validate the form data (optional)
+        if not name or not email or not message:
+            messages.error(request, 'All fields are required.')
+            return redirect('contact')
+
+        # Prepare the email
         subject = f"New Contact Form Submission from {name}"
         message_body = f"""
         You have a new message from the contact form on your website.
@@ -38,20 +48,21 @@ def contact(request):
         """
 
         try:
-            # Send the email to the admin
+            # Send email to the admin
             send_mail(
                 subject,
                 message_body,
                 settings.DEFAULT_FROM_EMAIL,  # From email (your app's email)
-                ['twintwobeats@gmail.com'],  # Admin email (replace with the admin's email)
+                ['twintwobeats@gmail.com'],  # ✅ Replace with your admin's email
                 fail_silently=False,  # Set to True if you don't want to see errors
             )
-            messages.success(request, 'Your message has been sent successfully!')  # Optional success message
+            messages.success(request, 'Your message has been sent successfully!')  # Show success message
             return redirect('contact')  # Redirect to avoid form resubmission
         except Exception as e:
-            messages.error(request, f"An error occurred: {e}")  # Display the error (optional)
+            messages.error(request, f"An error occurred: {e}")  # Show error message
 
-    return render(request, 'contact.html')  # Render the form if GET request
+    return render(request, 'contact.html')
+
 
 def home(request):
     return render(request, 'home.html')
