@@ -44,7 +44,7 @@
                     <!-- Hidden Beat Details -->
                     <div id="details-{{ forloop.counter }}" class="beat-details">
                         <p><strong>Quantity:</strong> {{ item.quantity }}</p>
-                        <p><strong>Total for this item:</strong> ${{ item.lineitem_total }}</p>
+                        <p><strong>Total for this item:</strong> £{{ item.lineitem_total }}</p>
                         {% if item.beat.audio_file %}
                             <p><a href="{{ item.beat.audio_file.url }}" class="download-link" download>Download</a></p>
                         {% else %}

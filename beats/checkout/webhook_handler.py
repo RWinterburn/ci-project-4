@@ -25,7 +25,9 @@ class StripeWH_Handler:
         intent = event['data']['object']  # Contains the PaymentIntent
         stripe_pid = intent.id
         metadata = intent.metadata
-        order = metadata.get('order_number')
+    
+    
+        order_number = metadata.get('order_number')
         
 
         try:

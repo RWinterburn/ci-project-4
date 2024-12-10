@@ -22,11 +22,12 @@ print('SPK: ', stripe_public_key)
 def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
+        order_number = request.session.get('order_number')
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
-            'order_number': metadata.get('order_number')
+            'order_number': order_number
         })
         return HttpResponse(status=200)
     except Exception as e:
