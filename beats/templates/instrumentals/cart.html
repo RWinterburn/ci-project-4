@@ -11,9 +11,9 @@
                 <div class="card-body text-dark">
                     <h5 class="card-title">{{ item.beat.title }}</h5>
                     <p class="card-text">
-                        <strong>Price:</strong> ${{ item.beat.price }}<br>
+                        <strong>Price:</strong> £{{ item.beat.price }}<br>
                         <strong>Quantity:</strong> {{ item.quantity }}<br>
-                        <strong>Total:</strong> ${{ item.total_price }}
+                        <strong>Total:</strong> £{{ item.total_price }}
                     </p>
                     <form method="post" action="{% url 'remove_from_cart' item.beat.id %}">
                         {% csrf_token %}
@@ -26,7 +26,7 @@
     </div>
 
     <div class="text-center my-4">
-        <h2 class="text-primary">Total Price: ${{ total_price }} <hr>
+        <h2 class="text-primary">Total Price: £{{ total_price }} <hr>
             <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">Proceed to Checkout</a>
     </div>
 

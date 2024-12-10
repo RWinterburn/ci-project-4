@@ -86,7 +86,7 @@ The purpose of Gig reviews is to let users display their thoughts on the musicia
 
 # UX Design
 
-For the colour scheme I have gone with a fun pastel colour with all of the colours complimenting eachother and a simple design so users know what they're looking at as soon as they load the page.
+For the colour scheme I have gone with a dark colour with white text, I think it looks more professional
 
 # Data Schema Overview
 

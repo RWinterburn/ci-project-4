@@ -11,8 +11,8 @@
         <img src="{{ beat.cover_image.url }}" alt="{{ beat.title }}" class="cover">
         <h3>{{ beat.title }}</h3>
         <p>By: {{ beat.producer }}</p>
-        <p>Price: ${{ beat.price }}</p>
-        <audio controls>
+        <p>Price: £{{ beat.price }}</p>
+        <audio controls controlslist="nodownload">
             <source src="{{ beat.audio_file.url }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
