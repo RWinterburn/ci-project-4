@@ -11,6 +11,7 @@ from profiles.models import Profile
 from profiles.forms import ProfileForm
 from bag.context_processors import cart_items
 import logging
+from django.core.mail import send_mail
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 logger = logging.getLogger(__name__)
@@ -153,13 +154,37 @@ def payment_success(request, order_number):
                 'city': order.city,
                 'street_address1': order.street_address1,
                 'street_address2': order.street_address2,
-                
             }
             profile_form = ProfileForm(profile_data, instance=profile)
             if profile_form.is_valid():
                 profile_form.save()
 
-    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
+    # Email confirmation logic
+    subject = f"Order Confirmation - {order_number}"
+    message = (
+        f"Dear {order.full_name},\n\n"
+        f"Thank you for your purchase! Your order has been successfully processed.\n\n"
+        f"Order Number: {order_number}\n"
+        f"Total: ${order.grand_total}\n\n"
+        f"We will notify you once your items have been shipped.\n\n"
+        f"Best regards,\n"
+        f"The Team"
+    )
+    recipient = order.email
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [recipient],
+        fail_silently=False,
+    )
+
+    # Success message
+    messages.success(
+        request,
+        f'Order successfully processed! Your order number is {order_number}. A confirmation email has been sent to {order.email}.'
+    )
+
     purchased_items = OrderLineItem.objects.filter(order=order)
     if 'bag' in request.session:
         del request.session['bag']
