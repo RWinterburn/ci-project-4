@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from decouple import config
 from pathlib import Path
 import os
+import dj_database_url
 
 import os
 from dotenv import load_dotenv
