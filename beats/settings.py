@@ -34,7 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qbvu(n2$xjb1o(9nbfe_!ay%x#z^)51vzmm_55pjd$+itrr-p)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [ 'twinii-beats-393d87d854a4.herokuapp.com', '8000-rwinterburn-ciproject4-e3jnjjwfa8p.ws.codeinstitute-ide.net','8000-rwinterburn-ciproject4-5lr2qut07wl.ws.codeinstitute-ide.net','8000-rwinterburn-ciproject4-cnhtlmzoj3b.ws-eu117.gitpod.io','8000-rwinterburn-ciproject4-vqkeogj33da.ws-eu117.gitpod.io', '8000-rwinterburn-ciproject4-j341iks4fk8.ws-eu116.gitpod.io', '8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu116.gitpod.io']
 
@@ -178,8 +178,8 @@ if 'USE_AWS' in os.environ:
     MEDIAFILES_LOCATION = 'media'
 
 
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
