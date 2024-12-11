@@ -195,7 +195,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Could be "none", "optional", or "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"  # Could be "none", "optional", or "mandatory"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"  # Could be "username", "email", or "username_email"
 
 SITE_ID = 1
