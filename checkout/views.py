@@ -158,25 +158,33 @@ def payment_success(request, order_number):
             profile_form = ProfileForm(profile_data, instance=profile)
             if profile_form.is_valid():
                 profile_form.save()
-                
-                purchased_items = order.lineitems.all()  # Related name used to fetch OrderLineItems
-    download_links = ""
+
+    # Retrieve all line items for the order
+    purchased_items = OrderLineItem.objects.filter(order=order)
+
+    # Construct download links for purchased beats
+    download_links = []
     for item in purchased_items:
         if item.beat and item.beat.audio_file:
-            beat_download_url = request.build_absolute_uri(item.beat.audio_file.url)
-            download_links += f"\n- {item.beat.title}: {beat_download_url}"
-            
-    # Email confirmation logic
+            download_links.append({
+                'title': item.beat.title,
+                'url': request.build_absolute_uri(item.beat.audio_file.url),
+            })
+
+    # Email confirmation with download links
     subject = f"Order Confirmation - {order_number}"
     message = (
         f"Dear {order.full_name},\n\n"
         f"Thank you for your purchase! Your order has been successfully processed.\n\n"
         f"Order Number: {order_number}\n"
         f"Total: ${order.grand_total}\n\n"
-        f"We will notify you once your items have been shipped.\n\n"
-        f"Best regards,\n"
-        f"The Team"
+        f"You can download your purchased beats using the links below:\n"
     )
+    for link in download_links:
+        message += f"- {link['title']}: {link['url']}\n"
+
+    message += "\nBest regards,\nThe Team"
+
     recipient = order.email
     send_mail(
         subject,
@@ -186,13 +194,13 @@ def payment_success(request, order_number):
         fail_silently=False,
     )
 
-    # Success message
+    # Success message for the user
     messages.success(
         request,
         f'Order successfully processed! Your order number is {order_number}. A confirmation email has been sent to {order.email}.'
     )
 
-    purchased_items = OrderLineItem.objects.filter(order=order)
+    # Clear the shopping bag
     if 'bag' in request.session:
         del request.session['bag']
 
@@ -200,6 +208,7 @@ def payment_success(request, order_number):
     context = {
         'order': order,
         'purchased_items': purchased_items,
+        'download_links': download_links,  # Pass links for displaying on the success page (optional)
     }
 
     return render(request, template, context)
