@@ -158,7 +158,14 @@ def payment_success(request, order_number):
             profile_form = ProfileForm(profile_data, instance=profile)
             if profile_form.is_valid():
                 profile_form.save()
-
+                
+                purchased_items = order.lineitems.all()  # Related name used to fetch OrderLineItems
+    download_links = ""
+    for item in purchased_items:
+        if item.beat and item.beat.audio_file:
+            beat_download_url = request.build_absolute_uri(item.beat.audio_file.url)
+            download_links += f"\n- {item.beat.title}: {beat_download_url}"
+            
     # Email confirmation logic
     subject = f"Order Confirmation - {order_number}"
     message = (
