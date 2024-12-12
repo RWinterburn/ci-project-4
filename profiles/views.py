@@ -21,7 +21,7 @@ def profile(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
 
     # Fetch the user's orders (case-insensitive)
-    orders = Order.objects.filter(email__iexact=request.user.email).order_by('-date')
+    orders = profile.orders.all().order_by('-date')
 
     # Fetch the purchased items for all orders
     purchased_items = OrderLineItem.objects.filter(order__in=orders)
