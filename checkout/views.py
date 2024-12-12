@@ -208,7 +208,7 @@ def payment_success(request, order_number):
     context = {
         'order': order,
         'purchased_items': purchased_items,
-        'download_links': download_links,  # Pass links for displaying on the success page (optional)
+          # Pass links for displaying on the success page (optional)
     }
 
     return render(request, template, context)

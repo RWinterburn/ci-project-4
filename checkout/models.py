@@ -6,8 +6,10 @@ from instrumentals.models import Beat
 from django.db import models
 from instrumentals.models import Beat
 import uuid
+from profiles.models import Profile
 
 class Order(models.Model):
+    user_profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
