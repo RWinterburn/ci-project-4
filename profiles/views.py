@@ -39,7 +39,7 @@ def edit_profile(request, user_id):
         user.save()
 
 
-        profile.bio = request.POST.get('bio', profile.bio) 
+    
         profile.save()
 
         return redirect('profile')  
