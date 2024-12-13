@@ -158,8 +158,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -172,17 +171,13 @@ if 'USE_AWS' in os.environ:
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
 
-
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     STATICFILES_LOCATION = 'static'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     MEDIAFILES_LOCATION = 'media'
 
-
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -195,8 +190,8 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "none"  # Could be "none", "optional", or "mandatory"
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"  # Could be "username", "email", or "username_email"
+ACCOUNT_EMAIL_VERIFICATION = "none"  
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"  
 
 SITE_ID = 1
 
@@ -204,7 +199,7 @@ SITE_ID = 1
 
 
 STRIPE_CURRENCY = 'gbp'
-# Stripe keys
+
 STRIPE_PUBLIC_KEY = ('pk_test_51QMs27DNIGFfmTD08gW65dE0pAuBD5kuuZSiJgXoMpwkVHBVkso5IRVXHupM6IWNzqosRiSIEdO5p2PpH9RDh4p900aCJeCn5d')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET')
