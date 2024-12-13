@@ -183,11 +183,6 @@ For the colour scheme I have gone with a dark colour with white text, I think it
 | Log in as Non-Admin and view Profile Page   | "Go to Admin Panel" link is not visible                     | works     |
 | Submit "Delete Profile" form                | Profile is deleted after confirmation prompt                | works     |
 | Submit "Delete Profile" form without CSRF   | Form submission fails, CSRF token error is shown            | works     |
-| Add a gig review with valid inputs          | Review is successfully added and displayed                  | works     |
-| Add a gig review with empty fields          | Form displays error messages, does not submit               | works     |
-| Add a gig to wishlist                       | Gig is added to the wishlist and appears in the list        | works     |
-| Delete a gig from wishlist                  | Gig is removed from the wishlist                            | works     |
-| Edit a gig in wishlist                      | Gig's details are updated and changes are reflected         | works     |
 | Submit a wishlist form without CSRF         | Form submission fails, CSRF token error is shown            | works     |
 | Attempt to delete a profile without confirmation | Profile is not deleted, stays intact                      | works     |
 
