@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
 from django.core.mail import send_mail
 from django.contrib import messages
+from instrumentals.models import Producer
 
 
 def index(request):
