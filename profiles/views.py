@@ -1,9 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,  redirect
 from django.contrib.auth.decorators import login_required
 from .models import Profile, User
 from checkout.models import Order, OrderLineItem
-
-
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -28,14 +27,24 @@ def profile(request):
 
 @login_required
 def edit_profile(request, user_id):
+
     user = get_object_or_404(User, id=user_id)
+
+    profile = get_object_or_404(Profile, user=user)
+
     if request.method == 'POST':
         user.first_name = request.POST.get('first_name', user.first_name)
         user.last_name = request.POST.get('last_name', user.last_name)
         user.email = request.POST.get('email', user.email)
         user.save()
-        return redirect('profile')
-    return render(request, 'edit_profile.html', {'profile': profile})
+
+
+        profile.bio = request.POST.get('bio', profile.bio) 
+        profile.save()
+
+        return redirect('profile')  
+
+    return render(request, 'edit_profile.html', {'profile': profile, 'user': user})
 
 
 @login_required

@@ -13,15 +13,12 @@
         <h2>{{ profile.user }}'s Profile</h2>
         <p><strong>Email:</strong> {{ profile.user.email }}</p>
         <p><strong>Bio:</strong> {{ profile.bio }}</p>
-        <p><strong>Location:</strong> {{ profile.location }}</p>
-        <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
 
-        <!-- New Buttons for Editing and Deleting the Profile -->
         <div class="profile-actions">
-            <!-- Edit Profile button -->
+
             <a href="{% url 'edit_profile' profile.user.id %}" class="btn btn-primary">Edit Profile</a>
             
-            <!-- Delete Profile button with confirmation -->
+
             <form action="{% url 'delete_profile' profile.user.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete your profile? This action cannot be undone.');">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Delete Profile</button>
