@@ -6,7 +6,7 @@ import uuid
 
 class Beat(models.Model):
     title = models.CharField(max_length=100)
-    beat_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)  # Unique beat ID
+    beat_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)  
     producer = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     cover_image = models.ImageField(upload_to='static/covers/', blank=True, null=True)

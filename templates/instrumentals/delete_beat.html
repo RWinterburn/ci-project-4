@@ -3,12 +3,12 @@
     <h1>Are you sure you want to delete the beat "{{ beat.title }}"?</h1>
     <p>Once deleted, it cannot be undone.</p>
 
-    <!-- Form to confirm deletion -->
+
     <form method="POST">
         {% csrf_token %}
         <button type="submit" style="color: red;">Yes, delete it</button>
     </form>
 
-    <!-- Link to cancel deletion -->
+
     <a href="{% url 'beats' %}">Cancel</a>
 {% endblock %}

@@ -1,4 +1,3 @@
-# in your app's apps.py file
 from django.apps import AppConfig
 
 class CheckoutConfig(AppConfig):
@@ -6,5 +5,5 @@ class CheckoutConfig(AppConfig):
     name = 'checkout'
 
     def ready(self):
-        import checkout.signals  # Make sure signals are loaded when the app is ready
+        import checkout.signals 
 

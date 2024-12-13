@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from instrumentals.models import Beat
 
-# Create your models here.
+
 
 class CartItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

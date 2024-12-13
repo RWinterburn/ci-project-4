@@ -77,7 +77,7 @@ The purpose of Gig reviews is to let users display their thoughts on the musicia
 
 * To make a website where the site owner can upload own music for free and sell to the public
 * Make a fully functioning online shop, where users can preview and purchase instrumentals
-* Ensure that only logged-in users can post reviews and comments.
+* Ensure that only logged-in users can buy instrumentals.
 * Make a database where when users have stored their information it can be seen from the admin panel for the admin 
 * To give the option for users to remove themselves off the database
 * To see the amount of orders and order details on the admin panel 
@@ -90,65 +90,11 @@ For the colour scheme I have gone with a dark colour with white text, I think it
 
 # Data Schema Overview
 
-The **Gig Reviews** website uses Flask and SQLAlchemy for database management. The data schema defines the structure of our database tables and their relationships. Below is a detailed description of each table and its relationships.
+The **Beats** website uses AWS and sqlite3 for database management. The data schema defines the structure of our database tables and their relationships. Below is a detailed description of each table and its relationships.
 
 ## Schema Breakdown
 
-### User Table (`User` Class)
 
-- **Table Name:** `users`
-- **Columns:**
-  - `id`: Unique identifier for each user (Primary Key).
-  - `email`: User’s email address (must be unique).
-  - `password`: User’s password.
-  - `first_name`: User’s first name.
-  - `is_admin`: Boolean flag to indicate if the user is an admin.
-- **Relationships:**
-  - `notes`: One-to-many relationship with the `Note` table (a user can have multiple notes).
-  - `comments`: One-to-many relationship with the `Comment` table (a user can have multiple comments).
-  - `blog_posts`: One-to-many relationship with the `BlogPost` table (a user can have multiple blog posts).
-
-### Note Table (`Note` Class)
-
-- **Table Name:** `notes`
-- **Columns:**
-  - `id`: Unique identifier for each note (Primary Key).
-  - `data`: Content of the note.
-  - `user_id`: Foreign Key linking to the `users` table.
-  - `is_public`: Boolean flag to indicate if the note is public.
-
-### BlogPost Table (`BlogPost` Class)
-
-- **Table Name:** `blog_posts`
-- **Columns:**
-  - `id`: Unique identifier for each blog post (Primary Key).
-  - `title`: Title of the blog post.
-  - `content`: Content of the blog post.
-  - `user_id`: Foreign Key linking to the `users` table.
-  - `created_at`: Timestamp of when the blog post was created.
-- **Relationships:**
-  - `comments`: One-to-many relationship with the `Comment` table (a blog post can have multiple comments).
-
-### Comment Table (`Comment` Class)
-
-- **Table Name:** `comments`
-- **Columns:**
-  - `id`: Unique identifier for each comment (Primary Key).
-  - `content`: Content of the comment.
-  - `user_id`: Foreign Key linking to the `users` table.
-  - `blog_post_id`: Foreign Key linking to the `blog_posts` table.
-  - `created_at`: Timestamp of when the comment was created.
-
-## Summary
-
-- **Tables:** `users`, `notes`, `blog_posts`, `comments`
-- **Primary Keys:** Unique identifiers for each table (`id` columns).
-- **Foreign Keys:** Links between tables (e.g., `user_id` in `notes` and `comments`, `blog_post_id` in `comments`).
-- **Relationships:**
-  - **One-to-Many:** One `User` can have multiple `notes`, `comments`, and `blog_posts`.
-  - **One-to-Many:** One `BlogPost` can have multiple `comments`.
-
-This schema ensures that data is organized efficiently and relationships between different entities are properly maintained. It provides a clear structure for how data is stored and linked within the application.
 
 
  # WireFrames Desktop
@@ -178,21 +124,21 @@ This schema ensures that data is organized efficiently and relationships between
 # Technologies Used 
 * Google Fonts
 * Adobe PhotoShop
-* HTML 
+* HTML
+* AWS
+* Python
+* JS 
 * CSS
 * VSCode
 * Code Anywhere 
-* Blackbox AI
 * Github.com
 * Git
 * Font Awesome
 * Am I Reponsive
 * Jquery
 * Jinja
-* SQL
-* Flask, admin, login and migrate and flaskSQLAlchemy
-* Werkzueg
-* WTForms
+* SQLite
+* 
 
 # Manual testing 
 

@@ -5,13 +5,7 @@
 <div class="contact-form-section">
     <h2>Contact Us</h2>
 
-    <!-- Show success or error messages -->
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert {{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
-
+    
     <form method="post" action="{% url 'contact' %}">
         {% csrf_token %}
         <div class="form-group">
@@ -34,7 +28,7 @@
 <div class="contact-details-section mt-5">
     <h3 class="text-center">Contact Information</h3>
     <p class="text-center">
-        <strong>Email:</strong> <a href="mailto:info@example.com">info@example.com</a><br>
+        <strong>Email:</strong> <a href="mailto:twintwobeats@gmail.com">twintwobeats@gmail.com</a><br>
         <strong>Phone:</strong> <a href="tel:+1234567890">+123 456 7890</a>
     </p>
 </div>

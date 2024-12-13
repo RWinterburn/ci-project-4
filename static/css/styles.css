@@ -1,21 +1,21 @@
 body {background-color: black;
-    color: #ffffff; /* White text for contrast */
-     /* Black gradient background */
-    margin: 0; /* Remove default margins */
-    font-family: Arial, sans-serif; /* Optional: Set a clean font */
+    color: #ffffff; 
+     
+    margin: 0; 
+    font-family: Arial, sans-serif; 
 }
 
 .custom-toggler {
-    border: 1px solid white; /* White border for the button */
-    background-color: black; /* Black background for the button */
-    padding: 5px; /* Adjust padding for better spacing */
+    border: 1px solid white; 
+    background-color: black; 
+    padding: 5px; 
 }
 
 .custom-toggler .navbar-toggler-icon {
-    background-image: none; /* Remove default toggler icon */
-    width: 30px; /* Set width of the icon */
-    height: 2px; /* Set height of the lines */
-    background-color: white; /* White color for the lines */
+    background-image: none; 
+    width: 30px; 
+    height: 2px; 
+    background-color: white; 
     position: relative;
 }
 
@@ -23,23 +23,23 @@ body {background-color: black;
 .custom-toggler .navbar-toggler-icon::after {
 
     position: absolute;
-    width: 100%; /* Full width of the icon */
-    height: 2px; /* Same height as the main line */
-    background-color: white; /* White color for the additional lines */
+    width: 100%; 
+    height: 2px; 
+    background-color: white; 
     left: 0;
 }
 
 .custom-search-btn {
-    color: white; /* White text */
-    background-color: black; /* Black background */
-    border: 2px solid white; /* White border */
-    transition: all 0.3s ease; /* Smooth hover effect */
+    color: white; 
+    background-color: black; 
+    border: 2px solid white; 
+    transition: all 0.3s ease; 
 }
 
 .custom-search-btn:hover {
-    color: black; /* Black text on hover */
-    background-color: white; /* White background on hover */
-    border-color: black; /* Black border on hover */
+    color: black; 
+    background-color: white; 
+    border-color: black; 
 }
 
 
@@ -49,15 +49,15 @@ body {background-color: black;
 
 .navbar-nav {
     display: flex;
-    justify-content: center; /* Center items within the nav */
+    justify-content: center; 
     align-items: center;
-    gap: 20px; /* Add spacing between nav items */
-    list-style-type: none; /* Remove bullet points from list items */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    gap: 20px; 
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
 }
 .nav-link {
-    text-decoration: none; /* Remove underline from links */
+    text-decoration: none; 
     color: white;
     font-size: 1rem;
     padding: 5px 10px;
@@ -66,18 +66,18 @@ body {background-color: black;
 }
 
 .nav-link:hover {
-    color: #000000; /* Text color on hover */
-    background-color: rgb(255, 255, 255); /* Background color on hover */
-    box-shadow: 0 4px 8px rgba(255, 84, 84, 0.664); /* Shadow around the element */
-    transition: color 0.9s ease, background-color 0.9s ease, box-shadow 0.9s ease; /* Smooth transition for all properties */
-    border-radius: 4px; /* Optional: Rounded corners for a better look */
+    color: #000000; 
+    background-color: rgb(255, 255, 255); 
+    box-shadow: 0 4px 8px rgba(255, 84, 84, 0.664); 
+    transition: color 0.9s ease, background-color 0.9s ease, box-shadow 0.9s ease; 
+    border-radius: 4px; 
 }
 
 
 
 .audio-div {
-    background-color: #333333; /* Dark gray for contrast */
-    color: #ffffff; /* White text */
+    background-color: #333333; 
+    color: #ffffff; 
     width: fit-content;
     align-items: center;
 }
@@ -99,7 +99,7 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(23, 162, 184, 0.8); /* Transparent blue overlay */
+    background: rgba(23, 162, 184, 0.8); 
     z-index: 9999;
 }
 
@@ -119,19 +119,19 @@ ul {
 }
 
 .grid-item {
-    background-color: #333333; /* Dark gray */
-    color: #ffffff; /* White text */
-    border: 1px solid #444444; /* Subtle darker border */
+    background-color: #333333; 
+    color: #ffffff; 
+    border: 1px solid #444444; 
     border-radius: 8px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Darker shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .grid-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7); /* Slightly deeper shadow */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7); 
 }
 
 .grid-item img.cover {
@@ -146,7 +146,7 @@ ul {
 }
 
 .grid-item button {
-    background-color: #007bff; /* Blue */
+    background-color: #344658; 
     color: white;
     border: none;
     padding: 10px 15px;
@@ -156,19 +156,19 @@ ul {
 }
 
 .grid-item button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
 }
 
-/* About section styles */
+
 .container-about {
-    display: flex; /* Arrange photo and text side by side */
+    display: flex; 
     gap: 20px;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #111111; /* Near black for a subtle contrast */
-    color: #ffffff; /* White text */
+    background-color: #111111; 
+    color: #ffffff; 
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
 }
@@ -176,7 +176,7 @@ ul {
 .about-photo img {
     max-width: 500px;
     height: auto;
-    border-radius: 10%; /* Circular image */
+    border-radius: 10%; 
     
     box-shadow: 0 6px 12px rgba(255, 255, 255, 0.5);
 }
@@ -184,25 +184,25 @@ ul {
 .about-text h3 {
     font-size: 1.8em;
     margin-bottom: 10px;
-    color: #ffffff; /* White headings */
+    color: #ffffff; 
 }
 
 .about-text p {
     font-size: 1.1em;
     line-height: 1.6;
-    color: #dddddd; /* Light gray for softer contrast */
+    color: #dddddd; 
     margin-bottom: 10px;
 }
 
 .faq {text-align: center;}
-/* FAQ Section Styles */
+
 .faq-section {
-    background-color: #111111; /* Near black for a subtle contrast */
-    color: #ffffff; /* White text */
+    background-color: #111111; 
+    color: #ffffff; 
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-    padding: 20px; /* Add some padding around the FAQ section */
-    border-radius: 8px; /* Rounded corners for the FAQ box */
+    padding: 20px; 
+    border-radius: 8px; 
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -211,34 +211,34 @@ ul {
 }
 
 .faq-section .card-header {
-    background-color: #161616; /* Darker grey for the header */
-    border: 1px solid #03030381; /* Add border to the header */
+    background-color: #161616; 
+    border: 1px solid #03030381; 
 }
 
 .faq-section .btn-link {
-    color: rgb(255, 255, 255); /* White text for the button */
-    font-size: 16px; /* Adjust font size */
+    color: rgb(255, 255, 255); 
+    font-size: 16px; 
 }
 
 .faq-section .card-body {
-    background-color: #222; /* Darker background for the body */
-    border-top: 1px solid #2b2b2b; /* Add border at the top of the body */
+    background-color: #222; 
+    border-top: 1px solid #2b2b2b; 
 }
 
 .faq-section .card-body p {
-    color: #ffffff; /* Lighter grey for the text inside the body */
+    color: #ffffff; 
 }
 
 .faq-section .card-header h5 {
-    font-size: 18px; /* Larger font size for the FAQ questions */
+    font-size: 18px; 
 }
 
 .faq-section .card {
-    margin-bottom: 10px; /* Space between each FAQ item */
+    margin-bottom: 10px; 
 }
 
 
-/* Responsive design */
+
 @media (max-width: 768px) {
     .container-about {
         flex-direction: column;
@@ -250,8 +250,7 @@ ul {
     }
 }
 
-/* Home Page Styles */
-/* Home Page Styles */
+
 .home-page {
     text-align: center;
     padding: 50px;
@@ -293,7 +292,7 @@ ul {
     transition: color 0.3s ease;
 }
 
-/* Testimonials Section Styles */
+
 .testimonials-section {
     padding: 50px;
     background-color: #00000025;
@@ -335,7 +334,7 @@ ul {
     color: #dddddd;
 }
 
-/* Featured Songs Section Styles */
+
 .featured-songs-section {
     padding: 50px;
     background-color: #f4f4f4;
@@ -384,7 +383,7 @@ ul {
 }
 
 
-/* Contact Form Section */
+
 .contact-form-section {
     padding: 50px;
     background-color: #f9f9f9;
@@ -395,7 +394,7 @@ ul {
     max-width: 400px;
 }
 
-/* Heading Style */
+
 .contact-form-section h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -403,7 +402,7 @@ ul {
     font-family: 'Arial', sans-serif;
 }
 
-/* Form Styles */
+
 .contact-form-section form {
     max-width: 600px;
     margin: 0 auto;
@@ -413,13 +412,13 @@ ul {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Group Styling */
+
 .contact-form-section .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
-/* Label Styling */
+
 .contact-form-section label {
     display: block;
     margin-bottom: 5px;
@@ -428,8 +427,8 @@ ul {
     color: #555;
 }
 
-/* Input and Textarea Styling */
-.contact-form-section input,
+
+
 .contact-form-section textarea {
     width: 100%;
     padding: 10px;
@@ -445,7 +444,7 @@ ul {
     border-color: #007bff;
 }
 
-/* Button Styling */
+
 .contact-form-section button {
     padding: 5px 10px;
     background-color: #007bff;
@@ -462,8 +461,7 @@ ul {
     background-color: #0056b3;
 }
 
-   /* Purchased Beats Section Styling */
-/* Purchased Beats Section Styling */
+
 .purchased-beats-section {
     padding: 20px;
     background-color: #f9f9f9;
@@ -473,7 +471,7 @@ ul {
     max-width: 800px;
 }
 
-/* Title Styling */
+
 .purchased-beats-title {
     font-size: 2rem;
     color: #ffffff;
@@ -481,7 +479,7 @@ ul {
     margin-bottom: 20px;
 }
 
-/* Purchased Beats Grid Layout */
+
 .purchased-beats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -490,7 +488,7 @@ ul {
     list-style: none;
 }
 
-/* Individual Beat Item Styling */
+
 .purchased-beat-item {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -505,7 +503,7 @@ ul {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Beat Cover Image */
+
 .beat-cover {
     max-width: 100%;
     height: auto;
@@ -513,14 +511,14 @@ ul {
     margin-bottom: 10px;
 }
 
-/* Beat Title */
+
 .beat-title {
     font-size: 1.2rem;
     color: #333;
     margin-bottom: 10px;
 }
 
-/* Toggle Details Button */
+
 .toggle-details {
     background: none;
     border: none;
@@ -536,7 +534,7 @@ ul {
     color: #0011ff;
 }
 
-/* Beat Details */
+
 .beat-details {
     color: #000;
     margin-top: 10px;
@@ -545,7 +543,7 @@ ul {
     display: none;
 }
 
-/* Download Link */
+
 .download-link {
     color: #28a745;
     text-decoration: none;
@@ -556,7 +554,7 @@ ul {
     color: #218838;
 }
 
-/* No Download Available */
+
 .no-download {
     color: #dc3545;
     font-style: italic;
@@ -564,11 +562,11 @@ ul {
 
     .profile-nav {
         display: flex;
-        justify-content: center; /* Center the buttons horizontally */
-        align-items: center; /* Align items vertically if needed */
-        gap: 15px; /* Space between buttons */
+        justify-content: center; 
+        align-items: center; 
+        gap: 15px; 
         margin-bottom: 20px;
-        margin-top: 20px; /* Space below the navigation bar */
+        margin-top: 20px; 
     }
 
     .nav-link-profile {
@@ -591,13 +589,13 @@ ul {
 
     #order-history-list {
         display: flex;
-        flex-direction: column; /* Stack the content vertically */
-        align-items: center; /* Center horizontally */
-        justify-content: center; /* Center vertically */
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
         position: relative;
         left: 50%;
-        transform: translateX(-50%); /* Offset to truly center */
-        width: 80%; /* You can adjust the width as needed */
-        margin: 0 auto; /* Center the element horizontally in the parent */
+        transform: translateX(-50%); 
+        width: 80%;
+        margin: 0 auto; 
     }
     
