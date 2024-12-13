@@ -2,7 +2,7 @@
 Website is a dynamic web application that allows users to purchase high-quality beats from talented producers. The platform provides a seamless user experience, enabling visitors to explore producer profiles, listen to beats, and purchase them securely using Stripe. Users can also view producer information such as years of experience, primary instruments, and software used. The website is designed to cater to artists, content creators, and businesses looking for unique music production solutions by purchasing royalty free beats.
 
 # Rationale 
-The "Beats" website is designed to create a vibrant and interactive community platform for music enthusiasts. It provides a space for users to buy music 
+The "Beats" website is designed to sell royalty free songs and instrumentals to producers of modern digital media. It provides a space for users to buy music.
 
 ## Key Features and Their Rationales
 
