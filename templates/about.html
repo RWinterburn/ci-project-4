@@ -34,7 +34,20 @@
     </div>
 </div>
 
+<div class="container-producers">
+    <h1>Our Producers</h1>
 
+    {% for producer in producers %}
+        <div class="producer-card">
+            <h2 class="producer-name">{{ producer.name }}</h2>
+            <p class="producer-info"><span>Years Producing:</span> {{ producer.years_producing }} years</p>
+            <p class="producer-info"><span>Main Instrument:</span> {{ producer.main_instrument }}</p>
+            <p class="producer-info"><span>Software:</span> {{ producer.software }}</p>
+        </div>
+    {% empty %}
+        <p>No producers found.</p>
+    {% endfor %}
+</div>
 
 <div class="accordion faq-section" id="faqAccordion">
     <h2 class="faq">Frequently Asked Questions</h2>

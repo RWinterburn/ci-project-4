@@ -14,11 +14,6 @@ def index(request):
     return render(request, 'home.html')  
 
 
-
-
-
-
-
 def contact(request):
     if request.method == 'POST':
 
@@ -63,8 +58,9 @@ def home(request):
     return render(request, 'home.html')
 
 def about(request):
-    return render(request, 'about.html')
-
+    producers = Producer.objects.all()  
+    return render(request, 'about.html', {'producers': producers})
+ 
 
 def cart_view(request):
     cart_items = CartItem.objects.filter(user=request.user)

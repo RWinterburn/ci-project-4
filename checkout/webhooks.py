@@ -7,8 +7,6 @@ from django.views.decorators.http import require_POST
 from .webhook_handler import StripeWH_Handler
 
 
-
-
 @require_POST
 @csrf_exempt
 def webhook(request):

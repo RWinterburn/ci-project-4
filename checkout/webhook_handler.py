@@ -1,9 +1,7 @@
-
 from django.http import JsonResponse
 from .models import Order
 from django.conf import settings
 from .forms import OrderForm
-
 
 
 class StripeWH_Handler:

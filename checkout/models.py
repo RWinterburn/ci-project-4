@@ -2,9 +2,6 @@ from django.db import models
 import uuid
 from django.db.models import Sum
 from instrumentals.models import Beat
-
-from django.db import models
-from instrumentals.models import Beat
 import uuid
 from profiles.models import Profile
 

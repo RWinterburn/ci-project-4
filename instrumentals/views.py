@@ -4,8 +4,6 @@ from .models import Beat
 from .forms import BeatForm
 
 
-
-
 def beat_list(request):
     beats = Beat.objects.all()  
     is_admin = request.user.is_authenticated and request.user.is_staff  
@@ -38,7 +36,6 @@ def delete_beat(request, beat_id):
 
         return render(request, 'instrumentals/delete_beat.html', {'beat': beat})
     return redirect('beats')
-
 
 
 @login_required
