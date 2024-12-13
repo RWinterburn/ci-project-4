@@ -2,25 +2,8 @@
 
 microphone pic https://pixabay.com/photos/recording-studio-indoors-mic-1869560/
 
-
-## to do list 
-fix login direct url
-test all functions
-Add css to all auth pages by getting the templates out of the original folder and overriding them 
-give users the option to delete their account and details off the website and database
-have an option to contact producer 
-fix stripe webhook and backend for pages
-
-clear certain things out of cart 
-Add option to download purchased beats on profile
-sort out stripe webhook
-finish custom sign in sign out sign up page
-neaten up files for deployment 
-
-
-
 # Beats
-Beats is a website where users can purchase royalty free beats and use them for their background music across different media.
+Website is a dynamic web application that allows users to purchase high-quality beats from talented producers. The platform provides a seamless user experience, enabling visitors to explore producer profiles, listen to beats, and purchase them securely using Stripe. Users can also view producer information such as years of experience, primary instruments, and software used. The website is designed to cater to artists, content creators, and businesses looking for unique music production solutions by purchasing royalty free beats.
 
 # Rationale 
 The "Beats" website is designed to create a vibrant and interactive community platform for music enthusiasts. It provides a space for users to buy music 
@@ -28,40 +11,62 @@ The "Beats" website is designed to create a vibrant and interactive community pl
 ## Key Features and Their Rationales
 
 ### User Authentication and Access Control
+#### Registration & Login: 
+Users can register and log in to access member-only features like purchasing beats, viewing profiles, and saving orders.
 
-**Rationale:** 
-Restricting certain actions, such as posting reviews, to authenticated users helps maintain a high quality of content and encourages genuine contributions. By requiring users to sign up and log in, the site ensures accountability and enhances security. This restriction helps prevent spam and misuse, providing a trustworthy environment for uploading beats and purchasing beats
+#### Profile Management: 
+Users can edit their personal information and manage purchases through their profiles.
 
-### Blog and Gig Review System
+### Producer Profiles
+Producer Information: Displays producer bio, skills, and equipment, such as software and hardware used.
 
-**Rationale:**
-The core feature of the site is the ability for users to create, read, update, and delete (CRUD) their own blog posts about gigs. This system allows users to share their personal experiences, opinions, and ratings of the gigs they have attended. It fosters a community of music lovers who can connect over shared interests, creating a rich repository of reviews and discussions.
+Producer Cards: Each producer has a dedicated card on the "Our Producers" section, showcasing:Name, Years of production experience, Main instrument, Software expertise
 
-### Personalized Blog Post Management
+### Beat Marketplace 
+#### Browse Beats:
+Users can browse beats and listen to previews.
 
-**Rationale:**
-Allowing users to edit and delete their own posts provides control over content and ensures that users can correct or remove information as needed. Admins have broader control to manage content, maintaining the site's cleanliness and appropriateness. This functionality supports user autonomy while also ensuring the integrity and quality of the content presented on the platform.
+#### Search & Filter: 
+Users can search for beats by Price, title or producer.
 
-### Comment System
+### E-commerce (Powered by Stripe)
+#### Secure Payments: 
+Integration with Stripe ensures secure payments for beat purchases.
 
-**Rationale:**
-Enabling users to comment on blog posts enhances the platform's interactivity. It allows users to provide feedback, share additional thoughts, and engage in discussions, which contributes to a more engaging and dynamic community. This interaction helps build a sense of community and encourages active participation among users.
+#### Order History:
+ Users can view their purchase history from their profiles.
 
-### Security Measures
+#### Instant Beat Download:
+ After successful payment, users can download the purchased beats directly.
 
-**Rationale:**
-Implementing CSRF protection and secure handling of user input (such as comments) is crucial for protecting the site from common web vulnerabilities and ensuring the integrity of user data. These security measures help prevent attacks and unauthorized access, safeguarding both user information and the overall stability of the site.
+### Custom Beat Requests
+Users can request customized beats from producers by filling out a contact form.
+Producers can receive and respond to user requests via email.
 
-### Dynamic Content Display
 
-**Rationale:**
-Displaying user-generated content such as blog posts and comments dynamically ensures that the most recent and relevant information is visible to users. This feature keeps the content fresh and engaging, encouraging users to return and interact with new posts and comments.
+# Beat Model
 
-### Administrative Functionality
+The Beat model represents individual music beats that can be listed, purchased, or streamed. It includes details like the beat's title, producer, price, and associated media files.
 
-**Rationale:**
-Providing admin functionality for managing users, posts, and comments ensures oversight and control over the content and user interactions. This feature is important for maintaining the site's quality and integrity, allowing admins to address issues and enforce community standards effectively.
+## Features
 
+#### UUID for Unique Identification:
+ Each beat is assigned a globally unique identifier (UUID) to ensure uniqueness and make URLs less predictable.
+
+#### File Uploads:
+ Supports uploading of both a cover image and an audio file. These files are stored in the static/covers/ and static/audio/ directories, respectively.
+
+#### String Representation:
+ The str method returns the title of the beat, making it easier to identify beats in the Django admin and other interfaces
+
+ ## The Producer model 
+ represents music producers who create beats. It tracks details about their experience, primary instruments, and preferred software.
+
+ ### Years of Experience: 
+ Tracks how long the producer has been creating music using a PositiveIntegerField.
+
+### Software & Instrument Info:
+ Provides insight into the producer's tools of the trade.
 
 # User Stories
 The purpose of Gig reviews is to let users display their thoughts on the musicians they have seen recently and to see any other reviews about gigs they maybe interesed in from other users
@@ -89,12 +94,6 @@ The purpose of Gig reviews is to let users display their thoughts on the musicia
 For the colour scheme I have gone with a dark colour with white text, I think it looks more professional
 
 # Data Schema Overview
-
-The **Beats** website uses AWS and sqlite3 for database management. The data schema defines the structure of our database tables and their relationships. Below is a detailed description of each table and its relationships.
-
-## Schema Breakdown
-
-
 
 
  # WireFrames Desktop
@@ -125,7 +124,8 @@ The **Beats** website uses AWS and sqlite3 for database management. The data sch
 * Google Fonts
 * Adobe PhotoShop
 * HTML
-* AWS
+* AWS S3
+* Django
 * Python
 * JS 
 * CSS

@@ -31,11 +31,9 @@ def add_beat(request):
 def delete_beat(request, beat_id):
     beat = get_object_or_404(Beat, id=beat_id)
     if request.method == 'POST':
-
         beat.delete()
-
-        return render(request, 'instrumentals/delete_beat.html', {'beat': beat})
-    return redirect('beats')
+        return redirect('beats')  # Redirect to the beat list page after deletion
+    return render(request, 'instrumentals/delete_beat.html', {'beat': beat})
 
 
 @login_required
