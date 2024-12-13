@@ -9,25 +9,32 @@
         <button class="nav-link-profile" onclick="showSection('order-history')">Order History</button>
     </nav>
 
-
     <section id="profile-info" class="profile-section">
         <h2>{{ profile.user }}'s Profile</h2>
         <p><strong>Email:</strong> {{ profile.user.email }}</p>
         <p><strong>Bio:</strong> {{ profile.bio }}</p>
         <p><strong>Location:</strong> {{ profile.location }}</p>
         <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
-    </section>
 
+        <!-- New Buttons for Editing and Deleting the Profile -->
+        <div class="profile-actions">
+            <!-- Edit Profile button -->
+            <a href="{% url 'edit_profile' profile.user.id %}" class="btn btn-primary">Edit Profile</a>
+            
+            <!-- Delete Profile button with confirmation -->
+            <form action="{% url 'delete_profile' profile.user.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete your profile? This action cannot be undone.');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete Profile</button>
+            </form>
+        </div>
+    </section>
 
     <section id="purchased-beats" class="profile-section" style="display: none;">
         <h2 class="purchased-beats-title">Purchased Beats</h2>
         <ul class="purchased-beats-grid">
             {% for item in purchased_items %}
                 <li class="purchased-beat-item">
-
                     <img src="{{ item.beat.cover_image.url }}" alt="{{ item.beat.title }}" class="beat-cover">
-    
-
                     <p class="beat-title">
                         <button class="toggle-details" onclick="toggleDetails('details-{{ forloop.counter }}')">
                             <strong>
@@ -37,11 +44,8 @@
                                     Error loading beat contact admin
                                 {% endif %}
                             </strong>
-                            
                         </button>
                     </p>
-    
-
                     <div id="details-{{ forloop.counter }}" class="beat-details">
                         <p><strong>Quantity:</strong> {{ item.quantity }}</p>
                         <p><strong>Total for this item:</strong> £{{ item.lineitem_total }}</p>
