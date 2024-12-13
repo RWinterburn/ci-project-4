@@ -12,6 +12,7 @@ class Profile(models.Model):
     )
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
+    bio = models.TextField(max_length=160, null=True, blank=True) 
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     street_address1 = models.CharField(max_length=255, blank=True, null=True)
     street_address2 = models.CharField(max_length=255, blank=False, null=True)
