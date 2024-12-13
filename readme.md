@@ -10,10 +10,15 @@ The "Beats" website is designed to create a vibrant and interactive community pl
 
 ## Key Features and Their Rationales
 
+
+
+
+
 ### User Authentication and Access Control
 #### Registration & Login: 
 Users can register and log in to access member-only features like purchasing beats, viewing profiles, and saving orders.
-
+![alt text](static/imgs/docs/sign-up.png)
+![alt text](static/imgs/docs/sign-in.png)
 #### Profile Management: 
 Users can edit their personal information and manage purchases through their profiles.
 
@@ -26,8 +31,12 @@ Producer Cards: Each producer has a dedicated card on the "Our Producers" sectio
 #### Browse Beats:
 Users can browse beats and listen to previews.
 
+
+### uploading bar for uploading audio superusers
+![alt text](<static/imgs/docs/uploading bar.png>)
 #### Search & Filter: 
 Users can search for beats by Price, title or producer.
+![alt text](static/imgs/docs/search-bar.png)
 
 ### E-commerce (Powered by Stripe)
 #### Secure Payments: 
@@ -42,6 +51,11 @@ Integration with Stripe ensures secure payments for beat purchases.
 ### Custom Beat Requests
 Users can request customized beats from producers by filling out a contact form.
 Producers can receive and respond to user requests via email.
+
+### confirmation email
+Users can keep track of thier orders and download from external link 
+![alt text](static/imgs/docs/confirmation-email.png)
+
 
 
 # Beat Model
@@ -76,7 +90,8 @@ The purpose of Gig reviews is to let users display their thoughts on the musicia
 * To have a platform to purchase music for a fixed price with no royalty confusion
 * To purchase music, using online payments
 * To have the option to listen to the music before they purchase
-* 
+* to use thier credit or debit card to purchase music
+* to have the option to come back and redownload songs
 
 ### Site Owner goals 
 
@@ -107,17 +122,11 @@ For the colour scheme I have gone with a dark colour with white text, I think it
 
 # Features 
 
-1. An admin dashboard for the admin to see the database
-   ![image](assets/docs/imagedocs/admin-dash.png)
-2. Blog form to submit a blog 
-   ![image](assets/docs/imagedocs/feature-blog.png)
-3. A nav bar so users can easily navigate the website
-   ![image](assets/docs/imagedocs/feature-nav-bar.png)
-4. Sign up form
-   ![image](assets/docs/imagedocs/feature-sign-up.png)
-5. login form
-   ![image](assets/docs/imagedocs/login-feature.png)
-## Future features
+1. ![alt text](static/imgs/docs/beat-card.png) beat card
+2. ![alt text](static/imgs/docs/audio-controls.png) audio controls for beat
+3. ![alt text](static/imgs/docs/cart-update.png) cart update feature
+4. ![alt text](static/imgs/docs/cart.png) cart
+5. other features demonstrated in read me
  For the future features I would like to add a shop page to the website where the user can click on the image and buy the image from the website and for it to be printed onto a canvas.
 
 # Technologies Used 
@@ -191,7 +200,7 @@ For the colour scheme I have gone with a dark colour with white text, I think it
 |:--------------------------------------------|:----------------------------------------------------------:|----------:|
 | View Home Page                              | Page displays a title, intro section, and content based on user status | works     |
 | Visit page as unauthenticated user          | Login prompt with sign-up and sign-in options are displayed | works     |
-| Visit page as authenticated user            | Login prompt is not visible; user sees gig beats and options to buy beats | works     |
+| Visit page as authenticated user            | Login prompt is not visible; user sees other options | works     |
 | beat cards are editble for authenticated admin                    | Beats are listed with title, content, author, and are editable | works     |
 | Attempt to edit a beat as admin       | Edit option is visible and functional for the admin   | works     |
 | Attempt to delete a beat as admin    | Delete option is visible and functional for the post owner  | works     |
@@ -199,50 +208,35 @@ For the colour scheme I have gone with a dark colour with white text, I think it
 | Attempt to edit/delete a beat as admin      | Edit and Delete options are visible and functional for admin | works     |
 | Submit any form without CSRF token          | Form submission fails, CSRF token error is shown            | works     |
 | click play button underneath song                | plays the beat corosponding to the song                | works     |
-| View post without comments                  | "No comments yet" message is displayed                      | works     |
-| View page with no blog posts                | "No reviews available" message is displayed                 | works     |
 
 
+## Manual Testing Table for checkout
 
-## W3C Validation 
-Managed to fix these few errors by finding the lines of code referenced on the page and removing the stray tags and correctly formating the code. Here are the results. 
+| Action                                      |                  Predicted Outcome                         |  Outcome  |
+|:--------------------------------------------|:----------------------------------------------------------:|----------:|
+| view checkout                              | views checkout page| works     |
+| checkout page with stripe works successfully         | user puts in details into stripe and it sends confirmation to stripe | works     |
+| when payment successful email sends to user          | user gets an email with beat | works     |
+| stripe doesnt work when info not entered correctly           | Form submission fails           | works     |
 
-
-![image](assets/docs/imagedocs/edit-blog-post.png)
-
-![image](assets/docs/imagedocs/edit-note.png)
-
-![image](assets/docs/imagedocs/login.png)
-
-![image](assets/docs/imagedocs/sign-up-valid.png)
 
 
 
 ### Lighthouse Report 
-![image](assets/docs/imagedocs/lighthouse.png)
+![alt text](static/imgs/docs/lighthouse.png)
 Lighthouse report.
 
 # Challenges and Bugs
 
-1. CRSF Token wasn't in the right line of code
-![image](assets/docs/imagedocs/bug-docs/crsf-token.png)
+1. ![alt text](<static/imgs/docs/problem 1.png>)
+![alt text](static/imgs/docs/problem-1-fix.png)
+changed in order to orders=orders
 
-2. Url endpoints ended up conflicting and throwing the app off until i changed the route
-![image](assets/docs/imagedocs/bug-docs/end-point.png)
-![image](assets/docs/imagedocs/bug-docs/end-points.png)
+2. ![alt text](static/imgs/docs/payment-intent-create.png) there was a bug i couldnt get over in stripe the payment success intent was not being successful but payment was still going through and saving details with payment intent create.
+![alt text](static/imgs/docs/payment-intent-error.png)
 
-3. import bugs, resolved when I used captials correctly
-![image](assets/docs/imagedocs/bug-docs/import-error.png)
+3. ![alt text](static/imgs/docs/debugging.png) the stripe public key wasnt coming in properly so i used print statments to debug.
 
-4. added user id later in the database and it wasnt being reconigzed until I migrated the database
-![image](assets/docs/imagedocs/bug-docs/no-user-id.png)
-
-5. SQL wasn't installed properly 
-![image](assets/docs/imagedocs/bug-docs/hadnt-installed-sql.png)
-
-6. note wasn't imported at the top of the page.
-![image](assets/docs/imagedocs/bug-docs/note-not-defined.png)
-![alt text](assets/docs/imagedocs/bug-docs/note-not-defined-solution.png)
 
 I had made a previous account called "Twinwinter" on my email address robertwinterburn@hotmail.co.uk and I had made a new account to make my name a bit more professional and readable (RWinterburn) but when I started making commits they came from "Twinwinter" on one and "RWinterburn" from another I don't know wether it was to do with me from switching from gitpod.io and codeanywhere to VScode need to figure this problem out for future developments as I haven't figured it out yet. So you will see commits from both of my Github accounts, dont think this has happened again. Resolved by git.
 
@@ -254,8 +248,13 @@ I tried signing up for Heroku so I had to find alternatives and it slowed my pro
 
 # Am I responsive 
 
-![alt text](assets/docs/imagedocs/am-i-responsive.png) 
+
 Am I Responsive test
+
+![alt text](static/imgs/docs/responsive-computer.png)
+![alt text](static/imgs/docs/responsive-big-tablet.png)
+![alt text](static/imgs/docs/responsive-mobile.png)
+![alt text](static/imgs/docs/responsive-tablet.png)
 
 # Deployment and Development 
 
@@ -263,7 +262,7 @@ Am I Responsive test
 
 
 * Login: Open your terminal and log in to Heroku: heroku login
-* Create an App: heroku create gig-reviews 
+* Create an App: heroku create twinii-beats 
 * Deploy: git push heroku main 
 * View: heroku open
 
@@ -281,15 +280,14 @@ To deploy the website the user must
 * Click on the yellow circle on the page repository.
 * You will see the backend working on building the website when this is complete go to "settings"
 * Click "pages" 
-* You should see the website link https://rwinterburn.github.io/project-3
+* You should see the website link https://github.com/RWinterburn/ci-project-4
 * Click on the link and you will see the website.
 
 
-### Deployment on Cloud Flare
-Currently isn't working asked for an extension on deadline to resolve
+
 
 ### Development 
-For future development go to https://github.com/RWinterburn/project-3
+For future development go to https://github.com/RWinterburn/ci-project-4
 * Click the green "code" button.
 * Copy the URL
 * Go to your cloud based coding site. e.g. Code Anywhere or Gitpod.io
@@ -298,7 +296,7 @@ For future development go to https://github.com/RWinterburn/project-3
 * Click create and it will create the code space for you.
 
 #### VSCode Development
-For future development go to https://github.com/RWinterburn/project-3
+For future development go to https://github.com/RWinterburn/ci-project-4
 * Click the green "code" button.
 * Copy the URL
 * Open "command palette in VSCode (CTRL + SHIFT + P)
@@ -314,8 +312,10 @@ For future development go to https://github.com/RWinterburn/project-3
 Code has been partially used from these websites, most of the time when I first implimented it it wouldn't work as intended until I changed the parameters.
 * W3Schools
 * Stackoverflow
-* YouTube: https://www.youtube.com/watch?v=dam0GPOAvVI
-* Chat GPT
+* YouTube: 
+* Chat GPT for quick css mock ups
+* partial boutique ado tutorial (for payment intent and user profile model)
+
 
 
 
