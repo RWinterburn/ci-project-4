@@ -32,7 +32,7 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        # Log the error for debugging purposes
+        
         logger.error(f"Error in cache_checkout_data: {e}")
         messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
         return HttpResponse(content=f"Error: {e}", status=400)
@@ -159,10 +159,10 @@ def payment_success(request, order_number):
             if profile_form.is_valid():
                 profile_form.save()
 
-    # Retrieve all line items for the order
+    
     purchased_items = OrderLineItem.objects.filter(order=order)
 
-    # Construct download links for purchased beats
+    
     download_links = []
     for item in purchased_items:
         if item.beat and item.beat.audio_file:
@@ -171,7 +171,7 @@ def payment_success(request, order_number):
                 'url': request.build_absolute_uri(item.beat.audio_file.url),
             })
 
-    # Email confirmation with download links
+    
     subject = f"Order Confirmation - {order_number}"
     message = (
         f"Dear {order.full_name},\n\n"
@@ -194,13 +194,13 @@ def payment_success(request, order_number):
         fail_silently=False,
     )
 
-    # Success message for the user
+    
     messages.success(
         request,
         f'Order successfully processed! Your order number is {order_number}. A confirmation email has been sent to {order.email}.'
     )
 
-    # Clear the shopping bag
+    
     if 'bag' in request.session:
         del request.session['bag']
 
@@ -208,7 +208,7 @@ def payment_success(request, order_number):
     context = {
         'order': order,
         'purchased_items': purchased_items,
-          # Pass links for displaying on the success page (optional)
+          
     }
 
     return render(request, template, context)
