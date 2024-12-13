@@ -123,8 +123,10 @@ For the colour scheme I have gone with a dark colour with white text, I think it
 2. ![alt text](static/imgs/docs/audio-controls.png) audio controls for beat
 3. ![alt text](static/imgs/docs/cart-update.png) cart update feature
 4. ![alt text](static/imgs/docs/cart.png) cart
-5. other features demonstrated in read me
- For the future features I would like to add a shop page to the website where the user can click on the image and buy the image from the website and for it to be printed onto a canvas.
+5. ![alt text](static/imgs/docs/dropdown-menu.png) nav dropdown menu
+
+ other features demonstrated in read me
+
 
 # Technologies Used 
 * Google Fonts
