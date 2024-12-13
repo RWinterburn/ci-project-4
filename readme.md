@@ -1,7 +1,3 @@
-## credit 
-
-microphone pic https://pixabay.com/photos/recording-studio-indoors-mic-1869560/
-
 # Beats
 Website is a dynamic web application that allows users to purchase high-quality beats from talented producers. The platform provides a seamless user experience, enabling visitors to explore producer profiles, listen to beats, and purchase them securely using Stripe. Users can also view producer information such as years of experience, primary instruments, and software used. The website is designed to cater to artists, content creators, and businesses looking for unique music production solutions by purchasing royalty free beats.
 
@@ -9,9 +5,6 @@ Website is a dynamic web application that allows users to purchase high-quality 
 The "Beats" website is designed to create a vibrant and interactive community platform for music enthusiasts. It provides a space for users to buy music 
 
 ## Key Features and Their Rationales
-
-
-
 
 
 ### User Authentication and Access Control
@@ -108,17 +101,21 @@ The purpose of Gig reviews is to let users display their thoughts on the musicia
 
 For the colour scheme I have gone with a dark colour with white text, I think it looks more professional
 
-# Data Schema Overview
+# Data Schema Overview 
+![alt text](static/imgs/docs/order-schema.png)
 
-
+![alt text](static/imgs/docs/database-schema.png) custom databases
  # WireFrames Desktop
 
  For the wireframes I didn't have a wireframe designer so I designed the app on Adobe Photoshop.
-1. Wireframe for profile
-![image](assets/docs/imagedocs/wireframe-profile.png)
+1. Wireframe for beats
+![alt text](static/imgs/docs/beats-wireframe.png)
 
-2. Wireframe for mainpage
-![image](assets/docs/imagedocs/wireframe-main-page.png)
+2. Wireframe for contact 
+![alt text](static/imgs/docs/wireframe-contact.png)
+
+3. Wireframe for about 
+![alt text](static/imgs/docs/aboutbase.png)
 
 # Features 
 
@@ -283,6 +280,21 @@ To deploy the website the user must
 * You should see the website link https://github.com/RWinterburn/ci-project-4
 * Click on the link and you will see the website.
 
+### AWS 
+steps i used to get the bucket working 
+#### Steps to Deploy:
+1. Create an S3 Bucket:
+2. Open the S3 Console.
+3. Create a new bucket (choose a unique name).
+4. Enable "Static Website Hosting" in the bucket settings.
+5. Upload your static files (HTML, CSS, JS, images, etc.) to the bucket.
+6. Set Permissions:
+7. Grant "public read" access to your files.
+Optionally, configure an S3 Bucket Policy to control access.
+8. (Optional) Attach CloudFront for CDN:
+Create a CloudFront distribution and link it to your S3 bucket.
+Configure caching, SSL (HTTPS), and regional distribution.
+
 
 
 
@@ -315,6 +327,10 @@ Code has been partially used from these websites, most of the time when I first 
 * YouTube: 
 * Chat GPT for quick css mock ups
 * partial boutique ado tutorial (for payment intent and user profile model)
+
+## credit 
+* Instrumentals made by myself along with images
+* microphone pic https://pixabay.com/photos/recording-studio-indoors-mic-1869560/
 
 
 
