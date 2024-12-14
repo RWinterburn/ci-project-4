@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [ 'twinii-beats-393d87d854a4.herokuapp.com', '8000-rwinterburn-ciproject4-e3jnjjwfa8p.ws.codeinstitute-ide.net','8000-rwinterburn-ciproject4-5lr2qut07wl.ws.codeinstitute-ide.net','8000-rwinterburn-ciproject4-cnhtlmzoj3b.ws-eu117.gitpod.io','8000-rwinterburn-ciproject4-vqkeogj33da.ws-eu117.gitpod.io', '8000-rwinterburn-ciproject4-j341iks4fk8.ws-eu116.gitpod.io', '8000-rwinterburn-ciproject4-636qs5xvb6b.ws-eu116.gitpod.io']
 
